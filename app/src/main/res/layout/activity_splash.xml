@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:percent="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashActivity">
+
+    <androidx.percentlayout.widget.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:src="@drawable/startback"
+            percent:layout_heightPercent="76%" />
+    </androidx.percentlayout.widget.PercentRelativeLayout>
+
+    <ImageView
+        android:layout_width="259dp"
+        android:layout_height="290dp"
+        android:visibility="gone"
+        android:id="@+id/coming"
+        android:layout_centerInParent="true"
+        android:src="@drawable/comingsoon" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="97dp"
+        android:layout_height="25dp"
+        android:layout_centerInParent="true"
+        android:scaleType="fitXY"
+        android:background="#ffffff"
+        android:src="@drawable/bolo" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="97dp"
+        android:text="Speak with confidence"
+        android:textColor="#5B6173"
+        android:textSize="24sp"
+        android:visibility="gone"
+        android:textStyle="bold" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/shubham"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="28dp"
+        android:elevation="8dp"
+        android:background="@drawable/shape"
+        android:backgroundTint="#BC262633"
+        android:text="GET Started"
+        android:textColor="#ffffff" />
+</RelativeLayout>
