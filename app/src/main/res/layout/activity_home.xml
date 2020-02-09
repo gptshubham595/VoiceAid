@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="75dp"
         android:scaleType="fitXY"
         android:src="@drawable/me1" />
 
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/boy"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="29dp"
         android:fontFamily="@font/opensans"
         android:gravity="center"
         android:id="@+id/wel"
@@ -67,7 +67,8 @@
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_below="@id/wel"
-        android:layout_marginTop="24dp"
+        android:id="@+id/btn"
+        android:layout_marginTop="34dp"
         android:background="@drawable/buttonback"
         android:orientation="horizontal">
 
@@ -123,8 +124,29 @@
                 android:background="@android:drawable/star_big_off"
                 android:layout_height="25dp"/>
         </LinearLayout>
-
     </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_below="@id/btn"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="70dp"
+                android:src="@drawable/badge1"
+                android:scaleType="fitXY"
+                android:layout_height="70dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/opensans"
+                android:layout_marginLeft="18dp"
+                android:layout_gravity="center"
+                android:text="Fantastic job! You’re getting better and better by the day!"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
     </RelativeLayout>
     </ScrollView>
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -132,7 +154,8 @@
         android:layout_alignParentBottom="true"
         android:background="#ffffff"
         app:menu="@menu/menu_bottom"
-
+        app:itemTextColor="@color/bottom_nav_color"
+        app:itemIconTint="@color/bottom_nav_color"
         android:layout_height="wrap_content"/>
 
 </RelativeLayout>
