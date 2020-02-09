@@ -44,8 +44,8 @@
 
             <ImageView
                 android:id="@+id/boy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="148dp"
+                android:layout_height="175dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="55dp"
                 android:scaleType="fitXY"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/boy"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="29dp"
+                android:layout_marginTop="19dp"
                 android:fontFamily="@font/opensans"
                 android:gravity="center"
                 android:text="Welcome back!"
