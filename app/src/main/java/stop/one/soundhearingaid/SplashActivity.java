@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,7 +18,7 @@ import maes.tech.intentanim.CustomIntent;
 public class SplashActivity extends AppCompatActivity {
 ImageView bolo,comingsoon,back;
 TextView text;
-AppCompatButton btn;
+Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,7 @@ AppCompatButton btn;
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(SplashActivity.this, MainActivity.class);
+                Intent i=new Intent(SplashActivity.this, PlanBuild.class);
                 startActivity(i);
                 CustomIntent.customType(SplashActivity.this,"fadein-to-fadeout");
             }
@@ -62,6 +63,7 @@ AppCompatButton btn;
                         comingsoon.startAnimation(animationi);
                         back.startAnimation(animationi);    }
                 }, 1200);
+
             }
         }, 3000);
 

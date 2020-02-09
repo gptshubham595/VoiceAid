@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9F7F2"
+    tools:context=".Welcome">
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-150dp"
+        android:background="@drawable/startback"
+        android:backgroundTint="#ffffff"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/hi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:fontFamily="@font/opensans"
+        android:text="Hey"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hi"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:text="Before you get started, we have a few things that we’d like you to learn that’ll help you better use the application. "
+        android:textColor="#5B6173"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/done" />
+
+
+    <ImageView
+        android:id="@+id/go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="33dp"
+        android:background="@drawable/circle"
+        android:backgroundTint="#AB262633"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_arrow_forward_black_24dp" />
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="183dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/cat"
+        android:id="@+id/cat"
+        android:visibility="gone"
+        android:layout_height="231dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_below="@id/cat"
+        android:layout_margin="25dp"
+        android:fontFamily="@font/opensans"
+        android:textSize="18sp"
+        android:visibility="gone"
+        android:id="@+id/put"
+        android:text="Put on your headphones/earphones for the best experience"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
