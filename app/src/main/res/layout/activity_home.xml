@@ -67,7 +67,7 @@
             <LinearLayout
                 android:id="@+id/btn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_below="@id/wel"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="34dp"
@@ -99,11 +99,16 @@
                         android:textColor="#ffffff" />
                 </LinearLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bubble"
+                    android:gravity="center">
                 <LinearLayout
                     android:layout_width="75dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="30dp"
                     android:background="@drawable/shape"
                     android:backgroundTint="#A6222121"
                     android:orientation="horizontal">
@@ -128,7 +133,9 @@
                         android:background="@android:drawable/star_big_off"
                         android:backgroundTint="#ffff00" />
                 </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
