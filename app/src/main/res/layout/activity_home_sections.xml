@@ -4,24 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="#f9f7f2"
     tools:context=".Home.HomeSections">
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
-        android:src="@drawable/rect" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/pattern" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/rect"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/rect" />
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:layout_below="@id/rect"
             android:background="#ffffff"
             android:elevation="4dp"
             android:navigationIcon="@drawable/ic_arrow_forward_black_24dp"
@@ -34,11 +41,11 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/blog_png"
+                    android:id="@+id/blog_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20sp"
+                    android:layout_marginTop="12sp"
                     android:layout_marginBottom="20sp"
                     android:adjustViewBounds="true"
                     android:gravity="center"
@@ -49,8 +56,10 @@
                 <LinearLayout
                     android:layout_width="75dp"
                     android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="40dp"
+                    android:layout_gravity="top|right"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="12dp"
+                    android:gravity="top"
                     android:background="@drawable/shape"
                     android:backgroundTint="#A6222121"
                     android:orientation="horizontal">
@@ -89,7 +98,6 @@
         android:layout_marginTop="135dp"
         android:scaleType="fitXY"
         android:src="@drawable/me1" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -110,14 +118,13 @@
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/ic_arrow_forward" />
-    </RelativeLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/boy"
-        android:layout_marginTop="19dp" />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

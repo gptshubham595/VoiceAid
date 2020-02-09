@@ -13,20 +13,22 @@ import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
 
 import stop.one.soundhearingaid.R;
 
-public class HomeBasics1 extends Fragment {
+public class HomeBasics extends Fragment {
+    TextView item_subtitle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_homebasics1, container, false);
+        return inflater.inflate(R.layout.fragment_homebasics, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        int position = FragmentPagerItem.getPosition(getArguments());
-        TextView title = view.findViewById(R.id.item_title);
-        title.setText(String.valueOf(position));
+        int position = FragmentPagerItem.getPosition(getArguments()) + 1;
+        item_subtitle = view.findViewById(R.id.item_subtitle);
+        item_subtitle.setText("Sessions " + position);
+
     }
 
 }

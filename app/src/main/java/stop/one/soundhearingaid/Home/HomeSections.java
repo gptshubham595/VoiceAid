@@ -27,10 +27,10 @@ public class HomeSections extends AppCompatActivity {
 
         adapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
-                .add("        ", HomeBasics2.class)
-                .add("        ", HomeBasics2.class)
-                .add("        ", HomeBasics2.class)
-                .add("        ", HomeBasics2.class)
+                .add("        ", HomeBasics.class)
+                .add("        ", HomeBasics.class)
+                .add("        ", HomeBasics.class)
+                .add("        ", HomeBasics.class)
                 .create());
 
         viewPager.setAdapter(adapter);
