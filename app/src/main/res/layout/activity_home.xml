@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff"
     tools:context=".HomeActivity">
 
@@ -24,138 +24,146 @@
         android:text="HOME"
         android:textSize="24sp"
         android:textStyle="bold" />
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_below="@id/home"
-        android:background="#F7F3E9"
-        android:layout_height="match_parent">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <ImageView
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/home"
+        android:background="#F7F3E9">
 
-        android:scaleType="fitXY"
-        android:src="@drawable/pattern" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/boy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/me1" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/boy"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
-        android:fontFamily="@font/opensans"
-        android:gravity="center"
-        android:id="@+id/wel"
-        android:text="Welcome back!"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_below="@id/wel"
-        android:id="@+id/btn"
-        android:layout_marginTop="34dp"
-        android:background="@drawable/buttonback"
-        android:orientation="horizontal">
+                android:scaleType="fitXY"
+                android:src="@drawable/pattern" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
+            <ImageView
+                android:id="@+id/boy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="47dp"
-                android:layout_marginTop="25dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="55dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/me1" />
+
+            <TextView
+                android:id="@+id/wel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/boy"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="29dp"
                 android:fontFamily="@font/opensans"
-                android:text="BASICS"
-                android:textColor="#ffffff"
+                android:gravity="center"
+                android:text="Welcome back!"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/btn"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="47dp"
-                android:fontFamily="@font/opensans"
-                android:text="You are on level 5 of 9"
-                android:textColor="#ffffff" />
-        </LinearLayout>
+                android:layout_below="@id/wel"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/buttonback"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="75dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="30dp"
-            android:background="@drawable/shape"
-            android:backgroundTint="#A6222121"
-            android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="8"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:textSize="14sp"
-                android:id="@+id/star"
-                android:layout_height="wrap_content"/>
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="4dp"
-                android:backgroundTint="#ffff00"
-                android:background="@android:drawable/star_big_off"
-                android:layout_height="25dp"/>
-        </LinearLayout>
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_below="@id/btn"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="40dp"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="70dp"
-                android:src="@drawable/badge1"
-                android:scaleType="fitXY"
-                android:layout_height="70dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/opensans"
-                android:layout_marginLeft="18dp"
-                android:layout_gravity="center"
-                android:text="Fantastic job! You’re getting better and better by the day!"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="47dp"
+                        android:layout_marginTop="25dp"
+                        android:fontFamily="@font/opensans"
+                        android:text="BASICS"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="47dp"
+                        android:fontFamily="@font/opensans"
+                        android:text="You are on level 5 of 9"
+                        android:textColor="#ffffff" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="75dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/shape"
+                    android:backgroundTint="#A6222121"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/star"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="8"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@android:drawable/star_big_off"
+                        android:backgroundTint="#ffff00" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="40dp">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/badge1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="18dp"
+                    android:fontFamily="@font/opensans"
+                    android:text="Fantastic job! You’re getting better and better by the day!"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#ffffff"
-        app:menu="@menu/menu_bottom"
-        app:itemTextColor="@color/bottom_nav_color"
         app:itemIconTint="@color/bottom_nav_color"
-        android:layout_height="wrap_content"/>
+        app:itemTextColor="@color/bottom_nav_color"
+        app:menu="@menu/menu_bottom" />
 
 </RelativeLayout>
