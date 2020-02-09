@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".Motivation.MotivationActivity"></activity>
+        <activity android:name=".HomeActivity" />
         <activity android:name=".Avatar" />
         <activity android:name=".Welcome" />
         <activity android:name=".PlanBuild" />

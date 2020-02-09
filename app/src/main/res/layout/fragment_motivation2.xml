@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/pitch"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="113dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/success" />
+
+
+
+
+    <TextView
+        android:id="@+id/item_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:textSize="80sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:text="And you’ll start getting confident with your speech within no time. "
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_margin="47dp"
+        android:fontFamily="@font/opensans"
+        android:layout_below="@id/pitch"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
