@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:elevation="4dp"
+    android:navigationIcon="@drawable/ic_arrow_forward_black_24dp"
+    app:navigationIcon="?attr/homeAsUpIndicator">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/blog_png"
+            android:layout_width="wrap_content"
+            android:layout_height="20sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="20sp"
+            android:adjustViewBounds="true"
+            android:text="Sessions 1" />
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.Toolbar>

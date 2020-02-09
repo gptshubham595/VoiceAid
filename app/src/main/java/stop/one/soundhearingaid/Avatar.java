@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import maes.tech.intentanim.CustomIntent;
+import stop.one.soundhearingaid.Home.HomeActivity;
 
 public class Avatar extends AppCompatActivity {
     RelativeLayout txtlay, avatarlay;

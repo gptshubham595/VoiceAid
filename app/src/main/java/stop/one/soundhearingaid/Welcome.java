@@ -56,7 +56,7 @@ public class Welcome extends AppCompatActivity {
                         startActivity(new Intent(Welcome.this,MainActivity.class));
                         CustomIntent.customType(Welcome.this,"fadein-to-fadeout");
                     }
-                },800);
+                }, 1800);
             }
         });
     }

@@ -11,7 +11,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "stop.one.soundhearingaid"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 3
         versionName "1.2"
@@ -94,5 +94,7 @@ dependencies {
 
     //Optional: see how to use the utility.
     implementation 'com.ogaclejapan.smarttablayout:utils-v4:2.0.0@aar'
+
+    implementation 'com.github.sembozdemir:ViewPagerArrowIndicator:1.0.0'
 
 }
