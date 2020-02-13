@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".trainer.AnalyzerActivity"/>
-
+        <activity android:name=".trainer.TrainerActivity"/>
         <activity android:name=".home.HomeSections" />
         <activity android:name=".motivation.MotivationActivity" />
         <activity android:name=".home.HomeActivity" />
@@ -27,7 +27,7 @@
         <activity android:name=".Welcome" />
         <activity android:name=".PlanBuild" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".trainer.TrainerActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

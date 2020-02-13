@@ -23,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
-                .add("        ", PageFragment1.class)
-                .add("        ", PageFragment2.class)
-                .add("        ", PageFragment3.class)
-                .add("        ", PageFragment4.class)
+                .add("        ", BasicsFragment1.class)
+                .add("        ", BasicsFragment2.class)
+                .add("        ", BasicsFragment3.class)
+                .add("        ", BasicsFragment4.class)
                 .create());
 
         viewPager = findViewById(R.id.viewpager);

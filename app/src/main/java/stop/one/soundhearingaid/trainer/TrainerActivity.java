@@ -11,6 +11,7 @@ import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import java.io.IOException;
@@ -42,6 +44,7 @@ public class TrainerActivity extends AppCompatActivity {
     private MediaRecorder myAudioRecorder;
     String outputFile;
     ImageView again;
+    Toolbar toolbar;
 
 
     @Override
@@ -63,6 +66,11 @@ public class TrainerActivity extends AppCompatActivity {
         mediaPlayer.start();
         wordsonly.setVisibility(GONE);
 
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         outputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/recording.3gp";
 
@@ -97,12 +105,6 @@ public class TrainerActivity extends AppCompatActivity {
                     hear.setImageResource(R.drawable.me1);
                     hear.setVisibility(VISIBLE);
                     speaker.setVisibility(VISIBLE);
-
-                    myAudioRecorder = new MediaRecorder();
-                    myAudioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-                    myAudioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-                    myAudioRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
-                    myAudioRecorder.setOutputFile(outputFile);
 
                 } else {
                     Toast.makeText(TrainerActivity.this, "Please Provide permission first", Toast.LENGTH_SHORT).show();
@@ -195,6 +197,13 @@ public class TrainerActivity extends AppCompatActivity {
         again.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                again.setVisibility(GONE);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        again.setVisibility(VISIBLE);
+                    }
+                },3000);
                 gif.setImageResource(0);
                 gif2.setImageResource(0);
                 new Handler().postDelayed(new Runnable() {
@@ -263,6 +272,12 @@ public class TrainerActivity extends AppCompatActivity {
     }
 
     private void startrecord() {
+        myAudioRecorder  = new MediaRecorder();
+        myAudioRecorder .setAudioSource(MediaRecorder.AudioSource.MIC);
+        myAudioRecorder .setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        myAudioRecorder .setOutputFile(outputFile);
+        myAudioRecorder .setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+
         try {
             myAudioRecorder.prepare();
             myAudioRecorder.start();
@@ -285,5 +300,11 @@ public class TrainerActivity extends AppCompatActivity {
 
         //   doUpload(outputFile); //call the method to upload your file and perform upload.
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if (menuItem.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
 }

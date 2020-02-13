@@ -35,6 +35,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
+            android:id="@+id/toolbar"
             android:layout_height="70dp"
             android:layout_below="@id/rect"
             android:navigationIcon="@drawable/ic_arrow_forward_black_24dp"
