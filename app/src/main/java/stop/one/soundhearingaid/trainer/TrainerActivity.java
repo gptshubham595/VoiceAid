@@ -153,7 +153,6 @@ public class TrainerActivity extends AppCompatActivity {
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    stoprecord();
                                     hear.setImageResource(R.drawable.me1);
                                     ((GifDrawable) gif2.getDrawable()).stop();
                                     go.setVisibility(VISIBLE);
@@ -163,6 +162,13 @@ public class TrainerActivity extends AppCompatActivity {
                                     params.height = 127;
                                     params.bottomMargin = 97;
                                     speaker.setLayoutParams(params);
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            stoprecord();
+                                        }
+                                    },200);
+
                                 }
                             }, 3500);
 
