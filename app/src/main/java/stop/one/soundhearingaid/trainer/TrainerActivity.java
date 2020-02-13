@@ -51,7 +51,7 @@ public class TrainerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainer);
-        Toast.makeText(this, "TAP ANYWHERE TO REPLAY", Toast.LENGTH_LONG).show();
+
         gif = findViewById(R.id.gif);
         gif2 = findViewById(R.id.gif2);
         test = findViewById(R.id.test);
@@ -63,7 +63,13 @@ public class TrainerActivity extends AppCompatActivity {
         wordsonly = findViewById(R.id.wordsonly);
         again = findViewById(R.id.again);
         mediaPlayer = MediaPlayer.create(this, R.raw.iwantotseerainbow);
-        mediaPlayer.start();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mediaPlayer.start();
+            }
+        },70);
+
         wordsonly.setVisibility(GONE);
 
         toolbar = findViewById(R.id.toolbar);
@@ -72,7 +78,7 @@ public class TrainerActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        outputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/recording.3gp";
+        outputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "Sound/recording.3gp";
 
         go.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +95,7 @@ public class TrainerActivity extends AppCompatActivity {
             public void run() {
                 rl.setVisibility(VISIBLE);
             }
-        }, 3030);
+        }, 3530);
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

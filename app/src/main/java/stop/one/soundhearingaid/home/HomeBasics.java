@@ -40,7 +40,7 @@ public class HomeBasics extends Fragment {
                 Intent i =new Intent(getContext(), TrainerActivity.class);
                 i.putExtra("stage","1");
                 startActivity(i);
-                CustomIntent.customType(getContext(),"fadein-to-fadeout");
+//                CustomIntent.customType(getContext(),"fadein-to-fadeout");
             }
         });
 
@@ -52,7 +52,7 @@ public class HomeBasics extends Fragment {
                 Intent i =new Intent(getContext(), TrainerActivity.class);
                 i.putExtra("stage","2");
                 startActivity(i);
-                CustomIntent.customType(getContext(),"fadein-to-fadeout");
+//                CustomIntent.customType(getContext(),"fadein-to-fadeout");
             }
         });
 
@@ -64,7 +64,7 @@ public class HomeBasics extends Fragment {
                 Intent i =new Intent(getContext(), TrainerActivity.class);
                 i.putExtra("stage","3");
                 startActivity(i);
-                CustomIntent.customType(getContext(),"fadein-to-fadeout");
+//                CustomIntent.customType(getContext(),"fadein-to-fadeout");
             }
         });
 
