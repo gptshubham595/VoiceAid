@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f9f7f2"
-    tools:context=".Home.HomeSections">
+    android:background="#F7F3E9"
+    tools:context=".home.HomeSections">
 
     <ImageView
         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
                     android:layout_width="75dp"
                     android:layout_height="30dp"
                     android:layout_gravity="top|right"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="25dp"
                     android:layout_marginTop="12dp"
                     android:gravity="top"
                     android:background="@drawable/shape"

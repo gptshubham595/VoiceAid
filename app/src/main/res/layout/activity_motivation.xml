@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bgpattern"
-    tools:context=".Motivation.MotivationActivity">
+    tools:context=".motivation.MotivationActivity">
     <ImageView
         android:layout_width="50dp"
         android:layout_gravity="right"
