@@ -40,7 +40,7 @@ public class BasicsFragment3 extends Fragment implements Runnable{
             public void run() {
                 playSong();
             }
-        },250);
+        },550);
         final TextView seekBarHint = view.findViewById(R.id.textView);
 
         seekBar = view.findViewById(R.id.seekbar);

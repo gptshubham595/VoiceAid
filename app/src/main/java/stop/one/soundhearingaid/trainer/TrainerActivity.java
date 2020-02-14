@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +47,8 @@ public class TrainerActivity extends AppCompatActivity {
     ImageView again;
     Toolbar toolbar;
 
+    SeekBar seekBar;
+    boolean wasPlaying = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +65,54 @@ public class TrainerActivity extends AppCompatActivity {
         go = findViewById(R.id.go);
         wordsonly = findViewById(R.id.wordsonly);
         again = findViewById(R.id.again);
+        seekBar = findViewById(R.id.seekbar);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+//                progress += 20;
+//                progress /= 100;
+//                progress = progress * mediaPlayer.getDuration();
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                final int pro=(int)((seekBar.getProgress()-20)*0.001*mediaPlayer.getDuration());
+                final int pro2=(int)(seekBar.getProgress()*0.01*((GifDrawable) gif2.getDrawable()).getDuration());
+//                Toast.makeText(TrainerActivity.this, pro2+"PRO" + pro+" GRE="+mediaPlayer.getDuration(), Toast.LENGTH_SHORT).show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mediaPlayer=null;
+                        mediaPlayer = MediaPlayer.create(TrainerActivity.this, R.raw.iwantotseerainbow);
+                        mediaPlayer.seekTo(pro2);
+                        gif2.setImageResource(0);
+                        gif2.setImageResource(R.drawable.wordsonly);
+                        ((GifDrawable) gif2.getDrawable()).seekTo(pro2);
+                        ((GifDrawable) gif2.getDrawable()).start();
+                        mediaPlayer.start();
+                    }
+                },50);
+
+
+            }
+        });
+
         mediaPlayer = MediaPlayer.create(this, R.raw.iwantotseerainbow);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 mediaPlayer.start();
             }
-        },70);
+        }, 70);
 
         wordsonly.setVisibility(GONE);
 
@@ -168,15 +212,11 @@ public class TrainerActivity extends AppCompatActivity {
                                     params.height = 127;
                                     params.bottomMargin = 97;
                                     speaker.setLayoutParams(params);
-                                    new Handler().postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            stoprecord();
-                                        }
-                                    },200);
+                                        stoprecord();
+
 
                                 }
-                            }, 3500);
+                            }, 3600);
 
 
                         }
@@ -215,7 +255,7 @@ public class TrainerActivity extends AppCompatActivity {
                     public void run() {
                         again.setVisibility(VISIBLE);
                     }
-                },3000);
+                }, 3000);
                 gif.setImageResource(0);
                 gif2.setImageResource(0);
                 new Handler().postDelayed(new Runnable() {
@@ -226,7 +266,11 @@ public class TrainerActivity extends AppCompatActivity {
                         if (mediaPlayer.isPlaying()) {
                             mediaPlayer.seekTo(0);
                         }
+
                         mediaPlayer.start();
+
+//                        Toast.makeText(TrainerActivity.this, "" + mediaPlayer.getDuration(), Toast.LENGTH_SHORT).show();
+
                     }
                 }, 50);
 
@@ -284,11 +328,11 @@ public class TrainerActivity extends AppCompatActivity {
     }
 
     private void startrecord() {
-        myAudioRecorder  = new MediaRecorder();
-        myAudioRecorder .setAudioSource(MediaRecorder.AudioSource.MIC);
-        myAudioRecorder .setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        myAudioRecorder .setOutputFile(outputFile);
-        myAudioRecorder .setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        myAudioRecorder = new MediaRecorder();
+        myAudioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        myAudioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        myAudioRecorder.setOutputFile(outputFile);
+        myAudioRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
         try {
             myAudioRecorder.prepare();
@@ -312,6 +356,7 @@ public class TrainerActivity extends AppCompatActivity {
 
         //   doUpload(outputFile); //call the method to upload your file and perform upload.
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         if (menuItem.getItemId() == android.R.id.home) {

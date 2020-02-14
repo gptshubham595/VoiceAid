@@ -136,12 +136,20 @@
         android:layout_below="@id/hear"
         android:id="@+id/wordsonly"
         android:elevation="18dp"
-        android:visibility="gone"
+
         android:src="@drawable/wordsonly"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="320dp"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"/>
-
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:layout_marginLeft="51dp"
+        android:layout_marginRight="51dp"
+        android:layout_marginTop="470dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        android:layout_gravity="center" />
     <ImageView
         android:id="@+id/go"
         android:layout_width="wrap_content"
