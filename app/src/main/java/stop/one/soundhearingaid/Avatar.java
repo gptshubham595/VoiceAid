@@ -27,7 +27,7 @@ public class Avatar extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Avatar.this, HomeActivity.class));
-                CustomIntent.customType(Avatar.this, "fadein-to-fadeout");
+//                CustomIntent.customType(Avatar.this, "fadein-to-fadeout");
             }
         });
         boy = findViewById(R.id.boy);

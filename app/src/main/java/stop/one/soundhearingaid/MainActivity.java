@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 int lastIdx = viewPager.getAdapter().getCount() - 1;
                 if (lastPageChange && position == lastIdx) {
                     startActivity(new Intent(MainActivity.this, Avatar.class));
-                    CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
+//                    CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                 }
             }
 

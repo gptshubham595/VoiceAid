@@ -97,4 +97,5 @@ dependencies {
 
     implementation 'com.github.sembozdemir:ViewPagerArrowIndicator:1.0.0'
 
+    implementation 'com.github.squti:Android-Wave-Recorder:1.4.0'
 }

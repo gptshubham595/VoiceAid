@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".trainer.AnalyzerActivity"/>
+        <activity android:name=".trainer.AnalyzerActivity" />
 
         <activity android:name=".home.HomeSections" />
         <activity android:name=".motivation.MotivationActivity" />

@@ -4,10 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
-import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
@@ -16,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -24,31 +23,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
-import java.io.IOException;
+import com.github.squti.androidwaverecorder.WaveRecorder;
 
-import maes.tech.intentanim.CustomIntent;
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 import stop.one.soundhearingaid.R;
+import stop.one.soundhearingaid.Util;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 public class TrainerActivity extends AppCompatActivity {
-    private static final int PERMISSION_REQUEST_CODE = 101;
+
     GifImageView gif, gif2, speakergif;
     MediaPlayer mediaPlayer;
     Button test;
     RelativeLayout rl;
     ImageView speaker, hear, wordsonly, go;
     int i = 0;
-    private MediaRecorder myAudioRecorder;
+    WaveRecorder waveRecorder;
     String outputFile;
     ImageView again;
     Toolbar toolbar;
 
     SeekBar seekBar;
     boolean wasPlaying = false;
+    private ProgressBar progressBar;
+    private int pStatus = 0;
+    Handler handler2 = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +69,12 @@ public class TrainerActivity extends AppCompatActivity {
         again = findViewById(R.id.again);
         seekBar = findViewById(R.id.seekbar);
 
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-//                progress += 20;
-//                progress /= 100;
-//                progress = progress * mediaPlayer.getDuration();
-
             }
 
             @Override
@@ -84,14 +84,14 @@ public class TrainerActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                final int pro=(int)((seekBar.getProgress()-20)*0.001*mediaPlayer.getDuration());
-                final int pro2=(int)(seekBar.getProgress()*0.01*((GifDrawable) gif2.getDrawable()).getDuration());
+                final int pro = (int) ((seekBar.getProgress() - 20) * 0.001 * mediaPlayer.getDuration());
+                final int pro2 = (int) (seekBar.getProgress() * 0.01 * ((GifDrawable) gif2.getDrawable()).getDuration());
 //                Toast.makeText(TrainerActivity.this, pro2+"PRO" + pro+" GRE="+mediaPlayer.getDuration(), Toast.LENGTH_SHORT).show();
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mediaPlayer=null;
+                        mediaPlayer = null;
                         mediaPlayer = MediaPlayer.create(TrainerActivity.this, R.raw.iwantotseerainbow);
                         mediaPlayer.seekTo(pro2);
                         gif2.setImageResource(0);
@@ -100,7 +100,7 @@ public class TrainerActivity extends AppCompatActivity {
                         ((GifDrawable) gif2.getDrawable()).start();
                         mediaPlayer.start();
                     }
-                },50);
+                }, 50);
 
 
             }
@@ -122,14 +122,14 @@ public class TrainerActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        outputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "Sound/recording.3gp";
+        outputFile = Environment.getExternalStorageDirectory().getAbsolutePath() + "/recording.wav";
 
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(TrainerActivity.this, AnalyzerActivity.class);
                 startActivity(i);
-                CustomIntent.customType(TrainerActivity.this, "fadein-to-fadeout");
+//                CustomIntent.customType(TrainerActivity.this, "fadein-to-fadeout");
 
             }
         });
@@ -149,16 +149,46 @@ public class TrainerActivity extends AppCompatActivity {
                         1
                 );
                 if (isPermissionGranted()) {
+                    speaker.setVisibility(VISIBLE);
+                    progressBar.setVisibility(VISIBLE);
                     rl.setVisibility(GONE);
                     gif.setVisibility(GONE);
                     gif2.setImageResource(0);
                     hear.setImageResource(R.drawable.me1);
                     hear.setVisibility(VISIBLE);
-                    speaker.setVisibility(VISIBLE);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            while (pStatus <= 100) {
+
+                                handler2.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        progressBar.setProgress(pStatus);
+                                    }
+                                });
+                                try {
+                                    Thread.sleep(70);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                pStatus++;
+                            }
+                        }
+                    }).start();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressBar.setVisibility(GONE);
+                            speaker.performClick();
+                        }
+                    }, 7000);
 
                 } else {
                     Toast.makeText(TrainerActivity.this, "Please Provide permission first", Toast.LENGTH_SHORT).show();
                     isPermissionGranted();
+                    Util.requestPermission(TrainerActivity.this, Manifest.permission.RECORD_AUDIO);
+                    Util.requestPermission(TrainerActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
                 }
 
 
@@ -178,15 +208,10 @@ public class TrainerActivity extends AppCompatActivity {
 //                                notfinish
 
 
-                            startrecord();
+                            startRecord();
                             hear.setImageResource(0);
                             hear.setImageResource(R.drawable.hear);
-                            hear.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Toast.makeText(TrainerActivity.this, "hi", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+
                             speakergif.setImageResource(0);
                             speakergif.setVisibility(VISIBLE);
 
@@ -212,11 +237,11 @@ public class TrainerActivity extends AppCompatActivity {
                                     params.height = 127;
                                     params.bottomMargin = 97;
                                     speaker.setLayoutParams(params);
-                                        stoprecord();
+                                    stopRecord();
 
 
                                 }
-                            }, 3600);
+                            }, 3500);
 
 
                         }
@@ -228,7 +253,7 @@ public class TrainerActivity extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            stoprecord();
+                            stopRecord();
                             hear.setImageResource(R.drawable.me1);
                             ((GifDrawable) gif2.getDrawable()).stop();
                             go.setVisibility(VISIBLE);
@@ -310,51 +335,26 @@ public class TrainerActivity extends AppCompatActivity {
     }
 
 
-    private boolean TimerIs() {
-        final boolean[] f = {false};
-        new CountDownTimer(30000, 1000) {
-
-            public void onTick(long millisUntilFinished) {
-
-                //here you can have your logic to set text to edittext
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(this, "Audio recorded successfully!", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "Audio was not recorded", Toast.LENGTH_SHORT).show();
             }
-
-            public void onFinish() {
-                f[0] = true;
-            }
-
-        }.start();
-        return false;
-    }
-
-    private void startrecord() {
-        myAudioRecorder = new MediaRecorder();
-        myAudioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        myAudioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        myAudioRecorder.setOutputFile(outputFile);
-        myAudioRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-
-        try {
-            myAudioRecorder.prepare();
-            myAudioRecorder.start();
-        } catch (IllegalStateException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
-        Toast.makeText(getApplicationContext(), "Recording started", Toast.LENGTH_LONG).show();
     }
 
-    private void stoprecord() {
-        myAudioRecorder.stop();
-        myAudioRecorder.release();
-        myAudioRecorder = null;
+    private void startRecord() {
+        waveRecorder = new WaveRecorder(outputFile);
+        waveRecorder.setNoiseSuppressorActive(true);
+        waveRecorder.startRecording();
+    }
 
-        Toast.makeText(getApplicationContext(), "Audio recorded successfully", Toast.LENGTH_LONG).show();
-
-        //   doUpload(outputFile); //call the method to upload your file and perform upload.
+    private void stopRecord() {
+        waveRecorder.stopRecording();
     }
 
     @Override
@@ -364,4 +364,5 @@ public class TrainerActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(menuItem);
     }
+
 }

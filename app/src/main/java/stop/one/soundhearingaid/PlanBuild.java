@@ -64,7 +64,7 @@ public class PlanBuild extends AppCompatActivity {
                     @Override
                     public void run() {
                         startActivity(new Intent(PlanBuild.this, Welcome.class));
-                        CustomIntent.customType(PlanBuild.this, "fadein-to-fadeout");
+//                        CustomIntent.customType(PlanBuild.this, "fadein-to-fadeout");
                     }
                 }, 5000);
 

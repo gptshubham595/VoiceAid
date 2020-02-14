@@ -36,7 +36,7 @@ Button btn;
             public void onClick(View v) {
                 Intent i=new Intent(SplashActivity.this, PlanBuild.class);
                 startActivity(i);
-                CustomIntent.customType(SplashActivity.this,"fadein-to-fadeout");
+//                CustomIntent.customType(SplashActivity.this,"fadein-to-fadeout");
             }
         });
 

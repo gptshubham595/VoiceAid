@@ -22,7 +22,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeActivity.this, HomeSections.class));
-                CustomIntent.customType(HomeActivity.this, "fadein-to-fadeout");
+//                CustomIntent.customType(HomeActivity.this, "fadein-to-fadeout");
             }
         });
     }
