@@ -13,13 +13,14 @@
         android:scaleType="fitXY"
         android:src="@drawable/pattern" />
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="148dp"
+        android:layout_height="175dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
         android:src="@drawable/hear"
         android:id="@+id/hear"
         android:visibility="gone"
-        android:layout_height="wrap_content"/>
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"

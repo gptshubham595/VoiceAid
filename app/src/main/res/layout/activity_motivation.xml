@@ -10,6 +10,7 @@
     <ImageView
         android:layout_width="50dp"
         android:layout_gravity="right"
+        android:visibility="gone"
         android:layout_margin="10dp"
         android:src="@drawable/rect"
         android:layout_height="30dp"/>
