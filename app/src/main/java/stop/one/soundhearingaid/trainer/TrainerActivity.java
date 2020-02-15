@@ -36,7 +36,7 @@ import static android.view.View.VISIBLE;
 public class TrainerActivity extends AppCompatActivity {
 
     GifImageView gif, gif2, speakergif;
-    MediaPlayer mediaPlayer;
+    MediaPlayer mediaPlayer,mediaPlayer3;
     Button test;
     RelativeLayout rl;
     ImageView speaker, hear, wordsonly, go;
@@ -48,7 +48,7 @@ public class TrainerActivity extends AppCompatActivity {
 
     SeekBar seekBar;
     boolean wasPlaying = false;
-    private ProgressBar progressBar;
+
     private int pStatus = 0;
     Handler handler2 = new Handler();
 
@@ -69,7 +69,7 @@ public class TrainerActivity extends AppCompatActivity {
         again = findViewById(R.id.again);
         seekBar = findViewById(R.id.seekbar);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
 
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -150,39 +150,14 @@ public class TrainerActivity extends AppCompatActivity {
                 );
                 if (isPermissionGranted()) {
                     speaker.setVisibility(VISIBLE);
-                    progressBar.setVisibility(VISIBLE);
+
                     rl.setVisibility(GONE);
 //                    gif.setVisibility(GONE);
                     gif2.setImageResource(0);
                     gif.setImageResource(R.drawable.saying);
-                    hear.setVisibility(GONE);
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            while (pStatus <= 100) {
 
-                                handler2.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        progressBar.setProgress(pStatus);
-                                    }
-                                });
-                                try {
-                                    Thread.sleep(70);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                                pStatus++;
-                            }
-                        }
-                    }).start();
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressBar.setVisibility(GONE);
-                            speaker.performClick();
-                        }
-                    }, 7000);
+                    hear.setVisibility(GONE);
+
 
                 } else {
                     Toast.makeText(TrainerActivity.this, "Please Provide permission first", Toast.LENGTH_SHORT).show();
@@ -201,6 +176,7 @@ public class TrainerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 i++;
                 if (i % 2 != 0) {
+                    mediaPlayer3 = MediaPlayer.create(getApplicationContext(), R.raw.here);
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -214,6 +190,9 @@ public class TrainerActivity extends AppCompatActivity {
                             hear.setVisibility(GONE);
                             gif.setVisibility(VISIBLE);
                             gif.setImageResource(R.drawable.saying);
+
+                            if(((GifDrawable) gif.getDrawable()).isPlaying())
+                            ((GifDrawable) gif.getDrawable()).stop();
 
                             speakergif.setImageResource(0);
                             speakergif.setVisibility(VISIBLE);
