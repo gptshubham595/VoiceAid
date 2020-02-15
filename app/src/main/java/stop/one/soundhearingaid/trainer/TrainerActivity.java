@@ -152,10 +152,10 @@ public class TrainerActivity extends AppCompatActivity {
                     speaker.setVisibility(VISIBLE);
                     progressBar.setVisibility(VISIBLE);
                     rl.setVisibility(GONE);
-                    gif.setVisibility(GONE);
+//                    gif.setVisibility(GONE);
                     gif2.setImageResource(0);
-                    hear.setImageResource(R.drawable.me1);
-                    hear.setVisibility(VISIBLE);
+                    gif.setImageResource(R.drawable.saying);
+                    hear.setVisibility(GONE);
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -211,6 +211,9 @@ public class TrainerActivity extends AppCompatActivity {
                             startRecord();
                             hear.setImageResource(0);
                             hear.setImageResource(R.drawable.hear);
+                            hear.setVisibility(GONE);
+                            gif.setVisibility(VISIBLE);
+                            gif.setImageResource(R.drawable.saying);
 
                             speakergif.setImageResource(0);
                             speakergif.setVisibility(VISIBLE);

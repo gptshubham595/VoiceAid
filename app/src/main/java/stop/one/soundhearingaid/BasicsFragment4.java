@@ -31,13 +31,14 @@ public class BasicsFragment4 extends Fragment {
         int position = FragmentPagerItem.getPosition(getArguments());
         play = view.findViewById(R.id.play1);
         play2 = view.findViewById(R.id.play2);
-        mediaPlayer = MediaPlayer.create(getContext(), R.raw.iwantotseerainbow);
-        mediaPlayer2 = MediaPlayer.create(getContext(), R.raw.iwantotseerainbow);
+        mediaPlayer = MediaPlayer.create(getContext(), R.raw.here);
+        mediaPlayer2 = MediaPlayer.create(getContext(), R.raw.stressing);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer = MediaPlayer.create(getContext(), R.raw.iwantotseerainbow);
-                mediaPlayer2 = MediaPlayer.create(getContext(), R.raw.iwantotseerainbow);
+                mediaPlayer = MediaPlayer.create(getContext(), R.raw.here);
+                mediaPlayer2 = MediaPlayer.create(getContext(), R.raw.stressing);
+
 
                 mediaPlayer.seekTo(0);
                 mediaPlayer2.seekTo(0);
@@ -56,8 +57,8 @@ public class BasicsFragment4 extends Fragment {
         play2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer = MediaPlayer.create(getContext(), R.raw.iwantotseerainbow);
-                mediaPlayer2 = MediaPlayer.create(getContext(), R.raw.iwantotseerainbow);
+                mediaPlayer = MediaPlayer.create(getContext(), R.raw.here);
+                mediaPlayer2 = MediaPlayer.create(getContext(), R.raw.stressing);
 
                 mediaPlayer.seekTo(0);
                 mediaPlayer2.seekTo(0);
