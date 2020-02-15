@@ -155,6 +155,7 @@ public class TrainerActivity extends AppCompatActivity {
 //                    gif.setVisibility(GONE);
                     gif2.setImageResource(0);
                     gif.setImageResource(R.drawable.saying);
+                    ((GifDrawable)gif.getDrawable()).stop();
 
                     hear.setVisibility(GONE);
 
@@ -183,16 +184,13 @@ public class TrainerActivity extends AppCompatActivity {
 
 //                                notfinish
 
-
                             startRecord();
                             hear.setImageResource(0);
                             hear.setImageResource(R.drawable.hear);
                             hear.setVisibility(GONE);
+
                             gif.setVisibility(VISIBLE);
                             gif.setImageResource(R.drawable.saying);
-
-                            if(((GifDrawable) gif.getDrawable()).isPlaying())
-                            ((GifDrawable) gif.getDrawable()).stop();
 
                             speakergif.setImageResource(0);
                             speakergif.setVisibility(VISIBLE);
@@ -211,8 +209,9 @@ public class TrainerActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     hear.setImageResource(R.drawable.me1);
-                                    ((GifDrawable) gif2.getDrawable()).stop();
                                     go.setVisibility(VISIBLE);
+                                    ((GifDrawable)gif.getDrawable()).stop();
+
                                     speakergif.setVisibility(GONE);
                                     ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) speaker.getLayoutParams();
                                     params.width = 127;
@@ -237,7 +236,8 @@ public class TrainerActivity extends AppCompatActivity {
                         public void run() {
                             stopRecord();
                             hear.setImageResource(R.drawable.me1);
-                            ((GifDrawable) gif2.getDrawable()).stop();
+                            ((GifDrawable)gif.getDrawable()).stop();
+
                             go.setVisibility(VISIBLE);
                             speakergif.setVisibility(GONE);
                             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) speaker.getLayoutParams();
@@ -333,10 +333,12 @@ public class TrainerActivity extends AppCompatActivity {
         waveRecorder = new WaveRecorder(outputFile);
         waveRecorder.setNoiseSuppressorActive(true);
         waveRecorder.startRecording();
+        Toast.makeText(this, "Recording Voice", Toast.LENGTH_SHORT).show();
     }
 
     private void stopRecord() {
         waveRecorder.stopRecording();
+        Toast.makeText(this, "Saved Recording", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -64,10 +64,6 @@ public class BasicsFragment3 extends Fragment implements Runnable{
                         - Math.round(percent * offset)
                         - Math.round(percent * labelWidth / 2));
 
-                if (progress > 0 && mediaPlayer != null && !mediaPlayer.isPlaying()) {
-                    clearMediaPlayer();
-
-                }
 
             }
 
@@ -78,8 +74,9 @@ public class BasicsFragment3 extends Fragment implements Runnable{
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                if (mediaPlayer != null ) {
                     mediaPlayer.seekTo(seekBar.getProgress());
+                    mediaPlayer.start();
                 }
 
             }
@@ -91,7 +88,6 @@ public class BasicsFragment3 extends Fragment implements Runnable{
 
 
                     if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                        clearMediaPlayer();
                         seekBar.setProgress(0);
                         wasPlaying = true;
 
