@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/circle"
-            android:backgroundTint="#D5262633"
+            android:backgroundTint="#F0660A"
             android:scaleType="fitXY"
             android:layout_margin="5dp"
             android:src="@drawable/replay" />
@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape2"
-            android:text="Let's Try !!"
+            android:text="CONTINUE"
             android:layout_margin="5dp"
             android:fontFamily="@font/opensans"
             android:textStyle="bold"
