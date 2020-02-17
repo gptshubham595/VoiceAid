@@ -41,64 +41,41 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="horizontal">
+
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_height="wrap_content">
-                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/threestar" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text="10"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/opensans"
-                    android:layout_marginTop="30dp"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="18sp"
-                    android:textColor="#FFC107"
-                    android:layout_height="wrap_content"/>
+                    android:layout_margin="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/nostar" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/threestar" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:text="11"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/opensans"
-                        android:layout_marginTop="30dp"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="18sp"
-                        android:textColor="#FFC107"
-                        android:layout_height="wrap_content"/>
+                        android:src="@drawable/nostar" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/threestar" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:text="12"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/opensans"
-                        android:layout_marginTop="30dp"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="18sp"
-                        android:textColor="#FFC107"
-                        android:layout_height="wrap_content"/>
+                        android:src="@drawable/nostar" />
                 </RelativeLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -107,64 +84,41 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="horizontal">
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/threestar" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:text="13"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/opensans"
-                        android:layout_marginTop="30dp"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="18sp"
-                        android:textColor="#FFC107"
-                        android:layout_height="wrap_content"/>
+                        android:src="@drawable/nostar" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/threestar" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:text="14"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/opensans"
-                        android:layout_marginTop="30dp"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="18sp"
-                        android:textColor="#FFC107"
-                        android:layout_height="wrap_content"/>
+                        android:src="@drawable/nostar" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/threestar" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:text="15"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/opensans"
-                        android:layout_marginTop="30dp"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="18sp"
-                        android:textColor="#FFC107"
-                        android:layout_height="wrap_content"/>
+                        android:src="@drawable/nostar" />
                 </RelativeLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -173,64 +127,41 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="horizontal">
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/threestar" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:text="16"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/opensans"
-                        android:layout_marginTop="30dp"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="18sp"
-                        android:textColor="#FFC107"
-                        android:layout_height="wrap_content"/>
+                        android:src="@drawable/nostar" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/threestar" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:text="17"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/opensans"
-                        android:layout_marginTop="30dp"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="18sp"
-                        android:textColor="#FFC107"
-                        android:layout_height="wrap_content"/>
+                        android:src="@drawable/nostar" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/threestar" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:text="18"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/opensans"
-                        android:layout_marginTop="30dp"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="18sp"
-                        android:textColor="#FFC107"
-                        android:layout_height="wrap_content"/>
+                        android:src="@drawable/nostar" />
                 </RelativeLayout>
+
+
             </LinearLayout>
 
 

@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,16 +17,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".trainer.AnalyzerActivity" />
         <activity android:name=".trainer.TrainerActivity" />
+        <activity android:name=".home.HomeActivity" />
+        <activity android:name=".trainer.AnalyzerActivity" />
         <activity android:name=".home.HomeSections" />
         <activity android:name=".motivation.MotivationActivity" />
-        <activity android:name=".home.HomeActivity" />
         <activity android:name=".Avatar" />
         <activity android:name=".Welcome" />
         <activity android:name=".PlanBuild" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

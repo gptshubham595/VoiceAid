@@ -10,5 +10,9 @@
     <string name="audio_db_artist_name">Your recordings</string>
     <string name="audio_db_album_name">Audio recordings</string>
     <string name="error_no_permissions">The recorder requires `RECORD_AUDIO` and `WRITE_EXTERNAL_STORAGE` permissions.</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 </resources>
