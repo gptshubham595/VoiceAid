@@ -29,6 +29,8 @@ public class BasicsFragment4 extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         int position = FragmentPagerItem.getPosition(getArguments());
+
+
         play = view.findViewById(R.id.play1);
         play2 = view.findViewById(R.id.play2);
         mediaPlayer = MediaPlayer.create(getContext(), R.raw.here);

@@ -1,153 +1,78 @@
 package stop.one.soundhearingaid;
 
-import android.content.res.AssetFileDescriptor;
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
 
-public class BasicsFragment3 extends Fragment implements Runnable{
+public class BasicsFragment3 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_basics3, container, false);
     }
-    MediaPlayer mediaPlayer = new MediaPlayer();
-    SeekBar seekBar;
-    boolean wasPlaying = false;
+
+    public static MediaPlayer mediaPlayer;
+    private SeekBar volumeSeekbar = null;
+    private AudioManager audioManager = null;
+
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         int position = FragmentPagerItem.getPosition(getArguments());
-
-
+        getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                playSong();
-            }
-        },550);
-        final TextView seekBarHint = view.findViewById(R.id.textView);
-
-        seekBar = view.findViewById(R.id.seekbar);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                seekBarHint.setVisibility(View.VISIBLE);
-                int x = (int) Math.ceil(progress / 1000f);
-
-                if (x < 10)
-                    seekBarHint.setText("0:0" + x);
-                else
-                    seekBarHint.setText("0:" + x);
-
-                double percent = progress / (double) seekBar.getMax();
-                int offset = seekBar.getThumbOffset();
-                int seekWidth = seekBar.getWidth();
-                int val = (int) Math.round(percent * (seekWidth - 2 * offset));
-                int labelWidth = seekBarHint.getWidth();
-                seekBarHint.setX(offset + seekBar.getX() + val
-                        - Math.round(percent * offset)
-                        - Math.round(percent * labelWidth / 2));
-
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                seekBarHint.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                if (mediaPlayer != null ) {
-                    mediaPlayer.seekTo(seekBar.getProgress());
-                    mediaPlayer.start();
-                }
-
-            }
-        });
-    }
-    public void playSong() {
-
                 try {
+                    mediaPlayer = MediaPlayer.create(getContext(), R.raw.loudness);
+                    mediaPlayer.seekTo(0);
+                    mediaPlayer.start();
+                    mediaPlayer.setLooping(true);
+
+                    volumeSeekbar = view.findViewById(R.id.seekbar);
+                    audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+                    volumeSeekbar.setMax(audioManager
+                            .getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+                    volumeSeekbar.setProgress(audioManager
+                            .getStreamVolume(AudioManager.STREAM_MUSIC));
 
 
-                    if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                        seekBar.setProgress(0);
-                        wasPlaying = true;
-
-                    }
-
-
-                    if (!wasPlaying) {
-
-                        if (mediaPlayer == null) {
-                            mediaPlayer = new MediaPlayer();
+                    volumeSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                        @Override
+                        public void onStopTrackingTouch(SeekBar arg0) {
                         }
 
+                        @Override
+                        public void onStartTrackingTouch(SeekBar arg0) {
+                        }
 
-
-                        AssetFileDescriptor descriptor = getContext().getAssets().openFd("loudness.mp3");
-                        mediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
-                        descriptor.close();
-
-                        mediaPlayer.prepare();
-                        mediaPlayer.setVolume(0.5f, 0.5f);
-                        mediaPlayer.setLooping(false);
-                        seekBar.setMax(mediaPlayer.getDuration());
-
-                        mediaPlayer.start();
-                        new Thread(this).start();
-
-                    }
-
-                    wasPlaying = false;
+                        @Override
+                        public void onProgressChanged(SeekBar arg0, int progress, boolean arg2) {
+                            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+                                    progress, 0);
+                        }
+                    });
                 } catch (Exception e) {
                     e.printStackTrace();
-
                 }
+
             }
+        }, 550);
 
-            public void run() {
-                if(mediaPlayer.isPlaying())
-                {int currentPosition = mediaPlayer.getCurrentPosition();
-                int total = mediaPlayer.getDuration();
-
-
-                while (mediaPlayer != null && mediaPlayer.isPlaying() && currentPosition < total) {
-                    try {
-                        Thread.sleep(1000);
-                        currentPosition = mediaPlayer.getCurrentPosition();
-                    } catch (InterruptedException e) {
-                        return;
-                    } catch (Exception e) {
-                        return;
-                    }
-
-                    seekBar.setProgress(currentPosition);
-
-                }
-            }}
-
-            private void clearMediaPlayer() {
-                mediaPlayer.stop();
-                mediaPlayer.release();
-                mediaPlayer = null;
-            }
 
     }
+
+
+}
