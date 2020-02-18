@@ -3,6 +3,7 @@ package stop.one.soundhearingaid.trainer;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Base64;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,13 +47,21 @@ public class AnalyzerActivity extends AppCompatActivity {
         //decode base64 string to image
         byte[] imageBytes = Base64.decode(imageString, Base64.DEFAULT);
         Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+
+        try {
+            decodedImage = TrimBitmap(decodedImage);
+            decodedImage = replaceColor(decodedImage);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT).show();
+        }
         graph.setImageBitmap(decodedImage);
 
         retry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(AnalyzerActivity.this, TrainerActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent i = new Intent(AnalyzerActivity.this, TrainerActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
@@ -59,8 +69,8 @@ public class AnalyzerActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(AnalyzerActivity.this, HomeActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent i = new Intent(AnalyzerActivity.this, HomeActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
         });
@@ -105,5 +115,91 @@ public class AnalyzerActivity extends AppCompatActivity {
                 }, 2000);
             }
         }, 4000);
+    }
+
+    public static Bitmap TrimBitmap(Bitmap bmp) {
+        int imgHeight = bmp.getHeight();
+        int imgWidth = bmp.getWidth();
+
+
+        //TRIM WIDTH - LEFT
+        int startWidth = 0;
+        for (int x = 0; x < imgWidth; x++) {
+            if (startWidth == 0) {
+                for (int y = 0; y < imgHeight; y++) {
+                    if (bmp.getPixel(x, y) != Color.WHITE) {
+                        startWidth = x;
+                        break;
+                    }
+                }
+            } else break;
+        }
+
+
+        //TRIM WIDTH - RIGHT
+        int endWidth = 0;
+        for (int x = imgWidth - 1; x >= 0; x--) {
+            if (endWidth == 0) {
+                for (int y = 0; y < imgHeight; y++) {
+                    if (bmp.getPixel(x, y) != Color.WHITE) {
+                        endWidth = x;
+                        break;
+                    }
+                }
+            } else break;
+        }
+
+
+        //TRIM HEIGHT - TOP
+        int startHeight = 0;
+        for (int y = 0; y < imgHeight; y++) {
+            if (startHeight == 0) {
+                for (int x = 0; x < imgWidth; x++) {
+                    if (bmp.getPixel(x, y) != Color.WHITE) {
+                        startHeight = y;
+                        break;
+                    }
+                }
+            } else break;
+        }
+
+
+        //TRIM HEIGHT - BOTTOM
+        int endHeight = 0;
+        for (int y = imgHeight - 1; y >= 0; y--) {
+            if (endHeight == 0) {
+                for (int x = 0; x < imgWidth; x++) {
+                    if (bmp.getPixel(x, y) != Color.WHITE) {
+                        endHeight = y;
+                        break;
+                    }
+                }
+            } else break;
+        }
+
+
+        return Bitmap.createBitmap(
+                bmp,
+                startWidth,
+                startHeight,
+                endWidth - startWidth,
+                endHeight - startHeight
+        );
+
+    }
+
+
+    public Bitmap replaceColor(Bitmap src) {
+        if (src == null)
+            return null;
+        int width = src.getWidth();
+        int height = src.getHeight();
+        int[] pixels = new int[width * height];
+        src.getPixels(pixels, 0, 1 * width, 0, 0, width, height);
+        for (int x = 0; x < pixels.length; ++x) {
+            //    pixels[x] = ~(pixels[x] << 8 & 0xFF000000) & Color.BLACK;
+            if (pixels[x] == Color.WHITE) pixels[x] = 0;
+        }
+        return Bitmap.createBitmap(pixels, width, height, Bitmap.Config.ARGB_8888);
     }
 }

@@ -224,11 +224,7 @@ public class TrainerActivity extends AppCompatActivity {
 
                             speakergif.setImageResource(R.drawable.speakervoice);
                             gif2.setImageResource(R.drawable.wordsonly);
-                            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) speaker.getLayoutParams();
-                            params.width = 77;
-                            params.height = 77;
-                            params.bottomMargin = 127;
-                            speaker.setLayoutParams(params);
+
                             go.setVisibility(GONE);
                             speaker.setVisibility(VISIBLE);
                             again2.setVisibility(GONE);

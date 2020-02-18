@@ -12,23 +12,21 @@
         android:background="@drawable/pattern"
         android:layout_height="match_parent"/>
 <ImageView
-    android:layout_width="match_parent"
+    android:layout_width="220dp"
     android:id="@+id/graph"
     android:visibility="gone"
     android:scaleType="fitXY"
-    android:layout_marginRight="-30dp"
-    android:layout_marginLeft="-70dp"
     android:layout_marginTop="250dp"
     android:layout_centerHorizontal="true"
-    android:layout_height="200dp"/>
+    android:layout_height="150dp"/>
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_below="@id/graph"
         android:layout_centerHorizontal="true"
         android:id="@+id/rainbowText"
-        android:visibility="gone"
         android:layout_margin="12dp"
+        android:visibility="gone"
         android:src="@drawable/i_want_to_see_a_rainbow"
         android:layout_height="wrap_content"/>
     <LinearLayout
