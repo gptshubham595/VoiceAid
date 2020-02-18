@@ -2,7 +2,6 @@ package stop.one.soundhearingaid;
 
 import android.content.Context;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -13,13 +12,12 @@ import android.widget.SeekBar;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
 
 import static stop.one.soundhearingaid.MainActivity.mediaPlayer;
 
-public class BasicsFragment3 extends Fragment  {
+public class BasicsFragment3 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -39,9 +37,7 @@ public class BasicsFragment3 extends Fragment  {
         int position = FragmentPagerItem.getPosition(getArguments());
         tryme = view.findViewById(R.id.tryme);
         arrow = view.findViewById(R.id.arrow);
-        mediaPlayer = MediaPlayer.create(getContext(), R.raw.loudness);
 
-        if(yes)mediaPlayer.start();
         getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -58,8 +54,10 @@ public class BasicsFragment3 extends Fragment  {
                     volumeSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                         @Override
                         public void onStopTrackingTouch(SeekBar arg0) {
+
                             yes = true;
                             mediaPlayer.start();
+
                             mediaPlayer.setLooping(true);
 
                             arrow.setVisibility(View.GONE);

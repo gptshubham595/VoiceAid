@@ -3,6 +3,7 @@ package stop.one.soundhearingaid;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -45,16 +46,17 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, Avatar.class));
                 }
 
+                if(position!=2 && yes){
+                    if(mediaPlayer.isPlaying() && mediaPlayer!=null)
+                    {mediaPlayer.pause();
+                    }
+                }
+
             }
 
             @Override
             public void onPageSelected(int position) {
-                if(position==2 && yes){mediaPlayer.start();}
-                else{
-                    if(mediaPlayer.isPlaying() && mediaPlayer!=null)
-                    {mediaPlayer.reset();
-                    }
-                }
+
             }
 
             @Override
