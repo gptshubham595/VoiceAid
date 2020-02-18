@@ -104,6 +104,6 @@ public class AnalyzerActivity extends AppCompatActivity {
                     }
                 }, 2000);
             }
-        }, 2000);
+        }, 4000);
     }
 }
