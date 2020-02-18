@@ -64,7 +64,7 @@ public class TrainerActivity extends AppCompatActivity {
     String outputFile;
     ImageView again;
     Toolbar toolbar;
-
+    String respo = "NULL";
     SeekBar seekBar;
     boolean wasPlaying = false;
     private ProgressBar progressBar;
@@ -164,6 +164,20 @@ public class TrainerActivity extends AppCompatActivity {
                         public void run() {
                             if (outputFile != null) {
                                 imageUpload();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (respo.equals("NUNLL")) {
+                                            imageUpload();
+                                        } else {
+                                            Intent i = new Intent(TrainerActivity.this, AnalyzerActivity.class);
+                                            i.putExtra("base64", respo);
+                                            startActivity(i);
+                                        }
+
+                                    }
+                                },200);
+
                             } else {
                                 Toast.makeText(getApplicationContext(), "Audio not selected!", Toast.LENGTH_LONG).show();
                             }
@@ -176,8 +190,7 @@ public class TrainerActivity extends AppCompatActivity {
 //                        e.printStackTrace();
 //                    }
 
-                    Intent i = new Intent(TrainerActivity.this, AnalyzerActivity.class);
-                    startActivity(i);
+
                 } else {
                     Toast.makeText(TrainerActivity.this, "Sorry unable to locate", Toast.LENGTH_SHORT).show();
                 }
@@ -417,14 +430,16 @@ public class TrainerActivity extends AppCompatActivity {
     private void imageUpload() {
         Response.Listener successListener = new Response.Listener<String>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(final String response) {
                 Log.d("Response", response);
-                Toast.makeText(TrainerActivity.this, "" + response, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(TrainerActivity.this, "" + response, Toast.LENGTH_SHORT).show();
+
                 try {
                     JSONObject jObj = new JSONObject(response);
-                    String message = jObj.getString("message");
+                    respo = jObj.getString("message");
 
-                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+
+//                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
                 } catch (JSONException e) {
                     // JSON error
@@ -447,12 +462,12 @@ public class TrainerActivity extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "multipart/mixed");
-                Log.i("teste","HEADER: " + headers);
+                Log.i("teste", "HEADER: " + headers);
 
                 return headers;
             }
         };
-        
+
         smr.addFile("file", outputFile);
         MyApplication.getInstance().addToRequestQueue(smr);
 
