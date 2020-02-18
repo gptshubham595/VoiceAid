@@ -30,6 +30,7 @@
             android:id="@+id/rect"
             android:layout_width="50dp"
             android:layout_height="30dp"
+            android:visibility="gone"
             android:layout_alignParentRight="true"
             android:layout_margin="10dp"
             android:src="@drawable/rect" />
@@ -91,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/circle"
-            android:backgroundTint="#F0660A"
+            android:backgroundTint="#5C6071"
             android:scaleType="fitXY"
             android:layout_margin="5dp"
             android:src="@drawable/replay" />
@@ -101,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape2"
-            android:text="CONTINUE"
+            android:text="LET'S TRY"
             android:layout_margin="5dp"
             android:fontFamily="@font/opensans"
             android:textStyle="bold"
@@ -116,42 +117,45 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="38dp"
-        android:visibility="gone"
+        android:layout_marginBottom="58dp"
         android:background="@drawable/speaker"
         android:textColor="#ffffff"
-         />
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="23dp"
         android:visibility="gone"
-        android:indeterminate="false"
-        android:max="100"
-        android:progress="0"
-        android:progressDrawable="@drawable/circular_progress"
-        android:secondaryProgress="0" />
+         />
+ <TextView
+     android:layout_width="wrap_content"
+     android:text="-TAP TO START RECORDING-"
+     android:textSize="18sp"
+     android:id="@+id/tap"
+     android:layout_marginTop="-40dp"
+     android:layout_below="@id/speaker"
+     android:visibility="gone"
+     android:layout_centerHorizontal="true"
+     android:layout_height="wrap_content"/>
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/speakergif"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="18dp"
-        android:alpha="0.5"
+        android:layout_marginBottom="38dp"
+        android:visibility="gone"
         android:src="@drawable/speakervoice"
-        android:visibility="gone" />
-
+         />
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="wrap_content"
+        android:layout_below="@id/hear"
+        android:id="@+id/wordsonlyshow"
+        android:elevation="18dp"
+        android:src="@drawable/wordsonly"
+        android:layout_marginTop="320dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"/>
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="wrap_content"
         android:layout_below="@id/hear"
         android:id="@+id/wordsonly"
         android:elevation="18dp"
-
         android:src="@drawable/wordsonly"
         android:layout_marginTop="320dp"
         android:layout_centerHorizontal="true"
@@ -165,19 +169,34 @@
         android:layout_height="wrap_content"
         android:alpha="0"
         android:layout_gravity="center" />
-    <ImageView
+    <Button
         android:id="@+id/go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="30dp"
-        android:visibility="gone"
+        android:layout_marginRight="40dp"
         android:layout_marginBottom="38dp"
         android:clickable="true"
-        android:background="@drawable/circle"
-        android:backgroundTint="#AB262633"
+        android:text="CONTINUE"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:fontFamily="@font/opensans"
+        android:background="@drawable/shape2"
+        android:backgroundTint="#5C6071"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_arrow_forward_black_24dp" />
-
+         />
+    <ImageView
+        android:id="@+id/again2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:backgroundTint="#E48344"
+        android:scaleType="fitXY"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="40dp"
+        android:visibility="gone"
+        android:src="@drawable/replay" />
 </RelativeLayout>

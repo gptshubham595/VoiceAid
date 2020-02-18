@@ -14,9 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,10 +36,12 @@ import static android.view.View.VISIBLE;
 public class TrainerActivity extends AppCompatActivity {
 
     GifImageView gif, gif2, speakergif;
-    MediaPlayer mediaPlayer,mediaPlayer3;
+    MediaPlayer mediaPlayer, mediaPlayer3;
     Button test;
     RelativeLayout rl;
-    ImageView speaker, hear, wordsonly, go;
+    ImageView speaker, hear, wordsonly;
+    Button go;
+    TextView tap;
     int i = 0;
     WaveRecorder waveRecorder;
     String outputFile;
@@ -51,12 +53,14 @@ public class TrainerActivity extends AppCompatActivity {
 
     private int pStatus = 0;
     Handler handler2 = new Handler();
+    ImageView again2;
+    GifImageView gifwordsonlyshow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainer);
-
+        tap = findViewById(R.id.tap);
         gif = findViewById(R.id.gif);
         gif2 = findViewById(R.id.gif2);
         test = findViewById(R.id.test);
@@ -68,9 +72,9 @@ public class TrainerActivity extends AppCompatActivity {
         wordsonly = findViewById(R.id.wordsonly);
         again = findViewById(R.id.again);
         seekBar = findViewById(R.id.seekbar);
-
-
-
+        again2 = findViewById(R.id.again2);
+        gifwordsonlyshow = findViewById(R.id.wordsonlyshow);
+        gifwordsonlyshow.setVisibility(GONE);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -86,6 +90,7 @@ public class TrainerActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 final int pro = (int) ((seekBar.getProgress() - 20) * 0.001 * mediaPlayer.getDuration());
                 final int pro2 = (int) (seekBar.getProgress() * 0.01 * ((GifDrawable) gif2.getDrawable()).getDuration());
+                final int pro3 = (int) (seekBar.getProgress() * 0.01 * ((GifDrawable) gif.getDrawable()).getDuration());
 //                Toast.makeText(TrainerActivity.this, pro2+"PRO" + pro+" GRE="+mediaPlayer.getDuration(), Toast.LENGTH_SHORT).show();
 
                 new Handler().postDelayed(new Runnable() {
@@ -98,6 +103,11 @@ public class TrainerActivity extends AppCompatActivity {
                         gif2.setImageResource(R.drawable.wordsonly);
                         ((GifDrawable) gif2.getDrawable()).seekTo(pro2);
                         ((GifDrawable) gif2.getDrawable()).start();
+
+                        gif.setImageResource(R.drawable.saying);
+                        ((GifDrawable) gif2.getDrawable()).seekTo(pro3);
+                        ((GifDrawable) gif2.getDrawable()).start();
+
                         mediaPlayer.start();
                     }
                 }, 50);
@@ -134,6 +144,16 @@ public class TrainerActivity extends AppCompatActivity {
             }
         });
 
+        again2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                again2.setVisibility(GONE);
+                go.setVisibility(GONE);
+                speaker.performClick();
+            }
+        });
+
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -149,13 +169,16 @@ public class TrainerActivity extends AppCompatActivity {
                         1
                 );
                 if (isPermissionGranted()) {
-                    speaker.setVisibility(VISIBLE);
+                    gifwordsonlyshow.setVisibility(VISIBLE);
+                    ((GifDrawable) gifwordsonlyshow.getDrawable()).stop();
 
+                    speaker.setVisibility(VISIBLE);
+                    tap.setVisibility(VISIBLE);
                     rl.setVisibility(GONE);
 //                    gif.setVisibility(GONE);
                     gif2.setImageResource(0);
                     gif.setImageResource(R.drawable.saying);
-                    ((GifDrawable)gif.getDrawable()).stop();
+                    ((GifDrawable) gif.getDrawable()).stop();
 
                     hear.setVisibility(GONE);
 
@@ -175,6 +198,8 @@ public class TrainerActivity extends AppCompatActivity {
         speaker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tap.setVisibility(GONE);
+                gifwordsonlyshow.setVisibility(GONE);
                 i++;
                 if (i % 2 != 0) {
                     mediaPlayer3 = MediaPlayer.create(getApplicationContext(), R.raw.here);
@@ -194,6 +219,7 @@ public class TrainerActivity extends AppCompatActivity {
 
                             speakergif.setImageResource(0);
                             speakergif.setVisibility(VISIBLE);
+                            speaker.setVisibility(GONE);
 
                             speakergif.setImageResource(R.drawable.speakervoice);
                             gif2.setImageResource(R.drawable.wordsonly);
@@ -203,16 +229,19 @@ public class TrainerActivity extends AppCompatActivity {
                             params.bottomMargin = 127;
                             speaker.setLayoutParams(params);
                             go.setVisibility(GONE);
-
-
+                            speaker.setVisibility(VISIBLE);
+                            again2.setVisibility(GONE);
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     hear.setImageResource(R.drawable.me1);
                                     go.setVisibility(VISIBLE);
-                                    ((GifDrawable)gif.getDrawable()).stop();
+                                    speaker.setVisibility(GONE);
+                                    again2.setVisibility(VISIBLE);
+                                    ((GifDrawable) gif.getDrawable()).stop();
 
                                     speakergif.setVisibility(GONE);
+                                    speaker.setVisibility(VISIBLE);
                                     ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) speaker.getLayoutParams();
                                     params.width = 127;
                                     params.height = 127;
@@ -236,9 +265,11 @@ public class TrainerActivity extends AppCompatActivity {
                         public void run() {
                             stopRecord();
                             hear.setImageResource(R.drawable.me1);
-                            ((GifDrawable)gif.getDrawable()).stop();
-
+                            ((GifDrawable) gif.getDrawable()).stop();
                             go.setVisibility(VISIBLE);
+                            speaker.setVisibility(GONE);
+                            again2.setVisibility(VISIBLE);
+
                             speakergif.setVisibility(GONE);
                             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) speaker.getLayoutParams();
                             params.width = 127;
@@ -286,7 +317,7 @@ public class TrainerActivity extends AppCompatActivity {
                     public void run() {
                         rl.setVisibility(VISIBLE);
                     }
-                },3000);
+                }, 3000);
 
 
             }
