@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -23,23 +24,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.error.AuthFailureError;
+import com.android.volley.error.VolleyError;
+import com.android.volley.request.SimpleMultiPartRequest;
 import com.github.squti.androidwaverecorder.WaveRecorder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 import stop.one.soundhearingaid.R;
-import stop.one.soundhearingaid.Send.RequestHandler;
+import stop.one.soundhearingaid.Send.MyApplication;
 import stop.one.soundhearingaid.Util;
 
 import static android.view.View.GONE;
@@ -47,6 +49,9 @@ import static android.view.View.VISIBLE;
 
 public class TrainerActivity extends AppCompatActivity {
 
+    private static final String BASE_URL = "http://ec2-13-235-23-241.ap-south-1.compute.amazonaws.com/uploadfile";
+
+    private static final int PICK_IMAGE_REQUEST = 100;
     GifImageView gif, gif2, speakergif;
     MediaPlayer mediaPlayer, mediaPlayer3;
     Button test;
@@ -62,11 +67,13 @@ public class TrainerActivity extends AppCompatActivity {
 
     SeekBar seekBar;
     boolean wasPlaying = false;
+    private ProgressBar progressBar;
 
     private int pStatus = 0;
     Handler handler2 = new Handler();
     ImageView again2;
     GifImageView gifwordsonlyshow;
+    File output;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,9 +156,32 @@ public class TrainerActivity extends AppCompatActivity {
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(TrainerActivity.this, AnalyzerActivity.class);
-                startActivity(i);
-//                CustomIntent.customType(TrainerActivity.this, "fadein-to-fadeout");
+                output = new File(outputFile);
+                if (output.exists()) {
+                    Toast.makeText(TrainerActivity.this, "YES", Toast.LENGTH_SHORT).show();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (outputFile != null) {
+                                imageUpload();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Audio not selected!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }, 200);
+
+//                    try {
+//                       // sendaudio();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+
+                    Intent i = new Intent(TrainerActivity.this, AnalyzerActivity.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(TrainerActivity.this, "Sorry unable to locate", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
@@ -364,18 +394,6 @@ public class TrainerActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0) {
-            if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "Audio recorded successfully!", Toast.LENGTH_SHORT).show();
-            } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, "Audio was not recorded", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
     private void startRecord() {
         waveRecorder = new WaveRecorder(outputFile);
         waveRecorder.setNoiseSuppressorActive(true);
@@ -396,46 +414,50 @@ public class TrainerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(menuItem);
     }
 
-    private void sendaudio() {
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                "http://ec2-13-235-23-241.ap-south-1.compute.amazonaws.com/uploadfile",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            Toast.makeText(getApplicationContext(), jsonObject + "", Toast.LENGTH_LONG).show();
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_LONG).show();
-                    }
-                }) {
+    private void imageUpload() {
+        Response.Listener successListener = new Response.Listener<String>() {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
+            public void onResponse(String response) {
+                Log.d("Response", response);
+                Toast.makeText(TrainerActivity.this, "" + response, Toast.LENGTH_SHORT).show();
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    String message = jObj.getString("message");
 
-                return params;
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+
+                } catch (JSONException e) {
+                    // JSON error
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+
             }
         };
 
-        stringRequest.setShouldCache(false);
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        };
 
-        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+        SimpleMultiPartRequest smr = new SimpleMultiPartRequest(Request.Method.POST, BASE_URL, successListener, errorListener) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "multipart/form-data");
+                Log.i("teste","HEADER: " + headers);
 
+                return headers;
+            }
+        };
+
+
+        smr.addFile("", outputFile);
+        MyApplication.getInstance().addToRequestQueue(smr);
 
     }
+
 
 }

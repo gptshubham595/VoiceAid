@@ -68,7 +68,6 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.1'
 
     implementation 'com.libizo:customedittext:1.0.6'
-    implementation 'com.android.volley:volley:1.1.1'
 
     implementation 'com.github.hajiyevelnur92:intentanimation:1.0'
 
@@ -103,5 +102,10 @@ dependencies {
     implementation 'com.github.squti:Android-Wave-Recorder:1.4.0'
 
     implementation 'com.github.nekoloop:Base64Image:0.1.0'
+    implementation 'org.apache.httpcomponents:httpcore:4.4.10'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.6'
+    implementation 'org.apache.httpcomponents:httpmime:4.5.6'
+
+    implementation 'dev.dworks.libs:volleyplus:+'
 
 }
