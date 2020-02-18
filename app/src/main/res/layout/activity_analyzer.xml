@@ -5,7 +5,12 @@
     android:layout_width="match_parent"
     android:backgroundTint="#F9F7F2"
     android:layout_height="match_parent"
+    android:background="#F9F7F2"
     tools:context=".trainer.AnalyzerActivity">
+    <ImageView
+        android:layout_width="match_parent"
+        android:background="@drawable/pattern"
+        android:layout_height="match_parent"/>
 <ImageView
     android:layout_width="match_parent"
     android:id="@+id/graph"
@@ -13,16 +18,8 @@
     android:layout_centerHorizontal="true"
     android:layout_height="200dp"/>
 
-    <pl.droidsonroids.gif.GifImageView
-        android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:id="@+id/threestars"
-        android:visibility="gone"
-        android:background="@drawable/threestargif"
-        android:layout_height="wrap_content"/>
 
-    <ImageView
+    <pl.droidsonroids.gif.GifImageView
         android:layout_width="wrap_content"
         android:src="@drawable/think"
         android:layout_marginTop="150dp"
@@ -50,4 +47,5 @@
         android:text="Just a moment, we’re calculating your results"
         android:layout_below="@id/starsappear"
         android:layout_height="wrap_content"/>
+
 </RelativeLayout>

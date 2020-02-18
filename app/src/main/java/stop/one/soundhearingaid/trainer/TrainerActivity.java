@@ -150,6 +150,7 @@ public class TrainerActivity extends AppCompatActivity {
                 again2.setVisibility(GONE);
                 go.setVisibility(GONE);
                 speaker.performClick();
+                speaker.performClick();
             }
         });
 
