@@ -176,12 +176,11 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="40dp"
-        android:layout_marginBottom="38dp"
+        android:layout_marginBottom="20dp"
         android:clickable="true"
         android:visibility="gone"
         android:text="CONTINUE"
         android:textStyle="bold"
-
         android:textColor="#ffffff"
         android:textSize="18sp"
         android:fontFamily="@font/opensans"
