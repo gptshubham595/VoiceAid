@@ -1,26 +1,29 @@
 package stop.one.soundhearingaid;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
-import maes.tech.intentanim.CustomIntent;
+import static stop.one.soundhearingaid.BasicsFragment3.yes;
 
 public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     FragmentPagerItemAdapter adapter;
+    public static MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mediaPlayer=MediaPlayer.create(this,R.raw.loudness);
         adapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
                 .add("        ", BasicsFragment1.class)
@@ -37,15 +40,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 int lastIdx = viewPager.getAdapter().getCount() - 1;
+
                 if (lastPageChange && position == lastIdx) {
                     startActivity(new Intent(MainActivity.this, Avatar.class));
-//                    CustomIntent.customType(MainActivity.this, "fadein-to-fadeout");
                 }
+
             }
 
             @Override
             public void onPageSelected(int position) {
-
+                if(position==2 && yes){mediaPlayer.start();}
+                else{
+                    if(mediaPlayer.isPlaying() && mediaPlayer!=null)
+                    {mediaPlayer.reset();
+                    }
+                }
             }
 
             @Override
@@ -53,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 int lastIdx = viewPager.getAdapter().getCount() - 1;
                 if (lastIdx == 3 /*&& lastPos==lastIdx*/ && state == 1) lastPageChange = true;
                 else lastPageChange = false;
+
+
             }
         });
         SmartTabLayout viewPagerTab = findViewById(R.id.viewpagertab);
@@ -60,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
 }
 

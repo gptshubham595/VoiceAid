@@ -29,6 +29,23 @@
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/tryme"
+            android:layout_below="@id/seekbar"
+            android:layout_margin="25dp"
+            android:id="@+id/tryme"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/trymearrow"
+            android:layout_below="@id/seekbar"
+            android:layout_marginRight="65dp"
+            android:id="@+id/arrow"
+            android:layout_marginTop="10dp"
+            android:layout_alignRight="@id/tryme"
+            android:layout_height="wrap_content"/>
 
     </RelativeLayout>
 
