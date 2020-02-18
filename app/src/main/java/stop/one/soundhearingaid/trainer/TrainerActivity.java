@@ -446,15 +446,14 @@ public class TrainerActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "multipart/form-data");
+                headers.put("Content-Type", "multipart/mixed");
                 Log.i("teste","HEADER: " + headers);
 
                 return headers;
             }
         };
-
-
-        smr.addFile("", outputFile);
+        
+        smr.addFile("file", outputFile);
         MyApplication.getInstance().addToRequestQueue(smr);
 
     }

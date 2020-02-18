@@ -39,8 +39,8 @@
         android:id="@+id/linear"
         android:layout_height="wrap_content">
     <Button
-        android:layout_width="137dp"
-        android:layout_margin="12dp"
+        android:layout_width="100dp"
+        android:layout_margin="8dp"
         android:background="@drawable/shapeborder"
         android:text="RETRY"
         android:id="@+id/retry"
@@ -49,9 +49,9 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:layout_width="137dp"
+        android:layout_width="100dp"
         android:backgroundTint="#5C6071"
-        android:layout_margin="12dp"
+        android:layout_margin="8dp"
         android:background="@drawable/shape2"
         android:text="NEXT"
         android:id="@+id/next"
