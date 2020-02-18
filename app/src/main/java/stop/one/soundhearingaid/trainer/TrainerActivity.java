@@ -167,7 +167,7 @@ public class TrainerActivity extends AppCompatActivity {
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        if (respo.equals("NUNLL")) {
+                                        if (respo.equals("NULL")) {
                                             imageUpload();
                                         } else {
                                             Intent i = new Intent(TrainerActivity.this, AnalyzerActivity.class);
@@ -433,19 +433,14 @@ public class TrainerActivity extends AppCompatActivity {
             public void onResponse(final String response) {
                 Log.d("Response", response);
 //                Toast.makeText(TrainerActivity.this, "" + response, Toast.LENGTH_SHORT).show();
-
-                try {
-                    JSONObject jObj = new JSONObject(response);
-                    respo = jObj.getString("message");
+                respo=response;
+                Intent i = new Intent(TrainerActivity.this, AnalyzerActivity.class);
+                i.putExtra("base64", respo);
+                startActivity(i);
 
 
 //                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
-                } catch (JSONException e) {
-                    // JSON error
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                }
 
             }
         };
