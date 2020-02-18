@@ -15,10 +15,49 @@
     android:layout_width="match_parent"
     android:id="@+id/graph"
     android:visibility="gone"
+    android:layout_marginTop="250dp"
     android:layout_centerHorizontal="true"
     android:layout_height="200dp"/>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_below="@id/graph"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/rainbowText"
+        android:visibility="gone"
+        android:layout_margin="12dp"
+        android:src="@drawable/i_want_to_see_a_rainbow"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="40dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:id="@+id/linear"
+        android:layout_height="wrap_content">
+    <Button
+        android:layout_width="137dp"
+        android:layout_margin="12dp"
+        android:background="@drawable/shapeborder"
+        android:text="RETRY"
+        android:id="@+id/retry"
+        android:textColor="#5C6071"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"/>
 
+    <Button
+        android:layout_width="137dp"
+        android:backgroundTint="#5C6071"
+        android:layout_margin="12dp"
+        android:background="@drawable/shape2"
+        android:text="NEXT"
+        android:id="@+id/next"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="wrap_content"
         android:src="@drawable/think"

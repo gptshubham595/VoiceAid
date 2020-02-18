@@ -18,8 +18,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".trainer.TrainerActivity" />
+        \<activity android:name=".trainer.AnalyzerActivity" />
         <activity android:name=".home.HomeActivity" />
-        <activity android:name=".trainer.AnalyzerActivity" />
+
         <activity android:name=".home.HomeSections" />
         <activity android:name=".motivation.MotivationActivity" />
         <activity android:name=".Avatar" />
