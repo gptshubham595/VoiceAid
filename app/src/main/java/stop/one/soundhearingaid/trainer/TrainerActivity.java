@@ -23,11 +23,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.github.squti.androidwaverecorder.WaveRecorder;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 import stop.one.soundhearingaid.R;
+import stop.one.soundhearingaid.Send.RequestHandler;
 import stop.one.soundhearingaid.Util;
 
 import static android.view.View.GONE;
@@ -382,6 +394,48 @@ public class TrainerActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(menuItem);
+    }
+
+    private void sendaudio() {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "http://ec2-13-235-23-241.ap-south-1.compute.amazonaws.com/uploadfile",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            Toast.makeText(getApplicationContext(), jsonObject + "", Toast.LENGTH_LONG).show();
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+
+                return params;
+            }
+        };
+
+        stringRequest.setShouldCache(false);
+
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+
+
     }
 
 }

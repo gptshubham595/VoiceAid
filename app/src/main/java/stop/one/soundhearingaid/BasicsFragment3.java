@@ -38,8 +38,8 @@ public class BasicsFragment3 extends Fragment {
                 try {
                     mediaPlayer = MediaPlayer.create(getContext(), R.raw.loudness);
                     mediaPlayer.seekTo(0);
-                    mediaPlayer.start();
-                    mediaPlayer.setLooping(true);
+//                    mediaPlayer.start();
+//                    mediaPlayer.setLooping(true);
 
                     volumeSeekbar = view.findViewById(R.id.seekbar);
                     audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
