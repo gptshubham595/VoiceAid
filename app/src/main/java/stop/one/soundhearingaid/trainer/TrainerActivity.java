@@ -256,7 +256,7 @@ public class TrainerActivity extends AppCompatActivity {
         again.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                again.setVisibility(GONE);
+                rl.setVisibility(GONE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

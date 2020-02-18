@@ -23,13 +23,13 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_margin="10dp"
-            android:visibility="gone"
-            android:src="@drawable/rect" />
+            android:src="@drawable/rect"
+            android:visibility="gone" />
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:id="@+id/toolbar"
             android:layout_below="@id/rect"
             android:background="#ffffff"
             android:elevation="4dp"
@@ -61,9 +61,9 @@
                     android:layout_gravity="top|right"
                     android:layout_marginLeft="25dp"
                     android:layout_marginTop="12dp"
-                    android:gravity="top"
                     android:background="@drawable/shape"
                     android:backgroundTint="#A6222121"
+                    android:gravity="top"
                     android:orientation="horizontal">
 
                     <TextView
@@ -100,6 +100,7 @@
         android:layout_marginTop="135dp"
         android:scaleType="fitXY"
         android:src="@drawable/me1" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

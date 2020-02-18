@@ -1,13 +1,10 @@
 package stop.one.soundhearingaid.fragment;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -24,19 +21,24 @@ import stop.one.soundhearingaid.R;
 public class ProfileFragment extends Fragment {
     ViewPager viewPager;
     FragmentPagerItemAdapter adapter;
-    ImageView help,settings;
+    ImageView help, settings;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_profile, container, false);
         adapter = new FragmentPagerItemAdapter(
-                getFragmentManager(), FragmentPagerItems.with(getContext())
+                getChildFragmentManager(), FragmentPagerItems.with(getContext())
                 .add("             MY STATS       ", MyStatsFragment.class)
                 .add("             MY BADGES      ", MyBadgesFragment.class)
                 .create());
         viewPager = view.findViewById(R.id.viewpager);
+        viewPager.setAdapter(adapter);
+        SmartTabLayout viewPagerTab = view.findViewById(R.id.viewpagertab);
+        viewPagerTab.setViewPager(viewPager);
+
         help = view.findViewById(R.id.help);
-        settings= view.findViewById(R.id.settings);
+        settings = view.findViewById(R.id.settings);
 
         help.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,11 +47,15 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        viewPager.setAdapter(adapter);
-        SmartTabLayout viewPagerTab = view.findViewById(R.id.viewpagertab);
-        viewPagerTab.setViewPager(viewPager);
-        return  view;
+
+        return view;
     }
 
+    @Override
+    public void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        viewPager.setAdapter(adapter);
+    }
 
 }
