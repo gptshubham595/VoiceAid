@@ -281,6 +281,13 @@ public class TrainerActivity extends AppCompatActivity {
                     }
                 }, 50);
 
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        rl.setVisibility(VISIBLE);
+                    }
+                },3000);
+
 
             }
         });
