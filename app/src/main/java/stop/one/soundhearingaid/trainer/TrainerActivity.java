@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -31,9 +30,6 @@ import com.android.volley.error.VolleyError;
 import com.android.volley.request.SimpleMultiPartRequest;
 import com.github.squti.androidwaverecorder.WaveRecorder;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +37,7 @@ import java.util.Map;
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 import stop.one.soundhearingaid.R;
-import stop.one.soundhearingaid.Send.MyApplication;
+import stop.one.soundhearingaid.send.MyApplication;
 import stop.one.soundhearingaid.Util;
 
 import static android.view.View.GONE;
@@ -176,7 +172,7 @@ public class TrainerActivity extends AppCompatActivity {
                                         }
 
                                     }
-                                },200);
+                                }, 200);
 
                             } else {
                                 Toast.makeText(getApplicationContext(), "Audio not selected!", Toast.LENGTH_LONG).show();
@@ -290,20 +286,15 @@ public class TrainerActivity extends AppCompatActivity {
                                     go.setVisibility(VISIBLE);
                                     speaker.setVisibility(GONE);
                                     again2.setVisibility(VISIBLE);
+
                                     ((GifDrawable) gif.getDrawable()).stop();
 
                                     speakergif.setVisibility(GONE);
-                                    speaker.setVisibility(VISIBLE);
-                                    ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) speaker.getLayoutParams();
-                                    params.width = 127;
-                                    params.height = 127;
-                                    params.bottomMargin = 97;
-                                    speaker.setLayoutParams(params);
                                     stopRecord();
 
 
                                 }
-                            }, 3500);
+                            }, 3300);
 
 
                         }
@@ -323,11 +314,7 @@ public class TrainerActivity extends AppCompatActivity {
                             again2.setVisibility(VISIBLE);
 
                             speakergif.setVisibility(GONE);
-                            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) speaker.getLayoutParams();
-                            params.width = 127;
-                            params.height = 127;
-                            params.bottomMargin = 97;
-                            speaker.setLayoutParams(params);
+
                         }
                     }, 50);
 
@@ -433,10 +420,25 @@ public class TrainerActivity extends AppCompatActivity {
             public void onResponse(final String response) {
                 Log.d("Response", response);
 //                Toast.makeText(TrainerActivity.this, "" + response, Toast.LENGTH_SHORT).show();
-                respo=response;
-                Intent i = new Intent(TrainerActivity.this, AnalyzerActivity.class);
-                i.putExtra("base64", respo);
-                startActivity(i);
+                String[] arrOfStr = response.split(",", 5);
+                String base64 = arrOfStr[0].substring(11, arrOfStr[0].length()-3);
+                String pitch=arrOfStr[1].substring(9);
+                Log.d("ARR",base64);
+                Log.d("ARR2",pitch);
+//                Log.d("ARR3",arrOfStr[2]);
+//                String firstFourCharsbase64 = arrOfStr[1].substring(0, arrOfStr[1].length() - 9);
+//                Toast.makeText(TrainerActivity.this, ""+arrOfStr[2], Toast.LENGTH_SHORT).show();
+
+                try {
+
+                    Intent i = new Intent(TrainerActivity.this, AnalyzerActivity.class);
+                    i.putExtra("base64", base64);
+                    i.putExtra("pitch", pitch);
+                    startActivity(i);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
 
 //                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
@@ -452,7 +454,7 @@ public class TrainerActivity extends AppCompatActivity {
             }
         };
 
-        SimpleMultiPartRequest smr = new SimpleMultiPartRequest(Request.Method.POST, BASE_URL, successListener, errorListener) {
+        SimpleMultiPartRequest smr = new SimpleMultiPartRequest(Request.Method.GET, BASE_URL, successListener, errorListener) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
@@ -462,6 +464,7 @@ public class TrainerActivity extends AppCompatActivity {
                 return headers;
             }
         };
+        smr.setShouldCache(false);
 
         smr.addFile("file", outputFile);
         MyApplication.getInstance().addToRequestQueue(smr);

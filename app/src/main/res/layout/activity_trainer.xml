@@ -106,7 +106,7 @@
             android:layout_margin="5dp"
             android:fontFamily="@font/opensans"
             android:textStyle="bold"
-            android:backgroundTint="#D5262633"
+                android:backgroundTint="#5C6071"
             android:textColor="#ffffff" />
         </LinearLayout>
     </RelativeLayout>

@@ -15,15 +15,12 @@ import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
-import stop.one.soundhearingaid.Badge.Badge1;
-import stop.one.soundhearingaid.Badge.Badge2;
-import stop.one.soundhearingaid.Badge.Badge3;
-import stop.one.soundhearingaid.Badge.Badge4;
-import stop.one.soundhearingaid.Badge.Badge5;
+import stop.one.soundhearingaid.badge.Badge1;
+import stop.one.soundhearingaid.badge.Badge2;
+import stop.one.soundhearingaid.badge.Badge3;
+import stop.one.soundhearingaid.badge.Badge4;
+import stop.one.soundhearingaid.badge.Badge5;
 import stop.one.soundhearingaid.R;
-import stop.one.soundhearingaid.home.HomeBasics;
-import stop.one.soundhearingaid.home.HomeBasics2;
-import stop.one.soundhearingaid.home.HomeSections;
 
 public class MyBadgesFragment extends Fragment {
     ViewPager viewPager;

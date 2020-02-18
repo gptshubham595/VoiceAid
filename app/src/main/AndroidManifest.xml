@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:name=".Send.MyApplication"
+        android:name=".send.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,11 +19,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-
         <activity android:name=".trainer.AnalyzerActivity" />
         <activity android:name=".trainer.TrainerActivity" />
         <activity android:name=".home.HomeActivity" />
-
         <activity android:name=".home.HomeSections" />
         <activity android:name=".motivation.MotivationActivity" />
         <activity android:name=".Avatar" />
