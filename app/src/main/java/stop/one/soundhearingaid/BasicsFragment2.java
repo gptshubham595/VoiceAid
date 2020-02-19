@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -66,7 +67,10 @@ public class BasicsFragment2 extends Fragment {
         final ImageView bird = view.findViewById(R.id.bird);
         final ImageView tryme = view.findViewById(R.id.tryme);
         final ImageView arrow = view.findViewById(R.id.arrow);
-        bird.setOnClickListener(new View.OnClickListener() {
+
+        SeekBar seekBar = view.findViewById(R.id.seekbar);
+
+        seekBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tryme.setVisibility(GONE);
@@ -77,20 +81,42 @@ public class BasicsFragment2 extends Fragment {
                 bird.setVisibility(GONE);
 
 
+            }
+        });
+
+        seekBar.setMax(100);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar arg0) {
+
+                yes2 = true;
+                audioPlayer.start();
+
+                audioPlayer.setLooping(true);
+
+                arrow.setVisibility(View.GONE);
+                tryme.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar arg0) {
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar arg0, int progress, boolean arg2) {
                 audioPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 PlaybackParams params = null;
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
                     yes2 = true;
                     params = new PlaybackParams();
-                    params.setPitch(0.75f);
+                    float pro=progress*0.01f;
+                    params.setPitch(pro);
                     audioPlayer.setPlaybackParams(params);
-                    audioPlayer.start();
-                    audioPlayer.setLooping(true);
                 }
-
-
             }
         });
+
         wowo.setAdapter(WoWoViewPagerAdapter.builder()
                 .fragmentManager(getFragmentManager())
                 .count(fragmentNumber())                       // Fragment Count

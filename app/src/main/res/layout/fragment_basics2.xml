@@ -25,6 +25,12 @@
         android:layout_marginTop="71dp"
         android:scaleType="fitXY"
         android:src="@drawable/path" />
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_marginTop="250dp"
+        android:id="@+id/seekbar"
+        android:alpha="0"
+        android:layout_height="100dp"/>
 
     <ImageView
         android:layout_width="match_parent"
