@@ -1,12 +1,17 @@
 package stop.one.soundhearingaid;
 
 import android.content.res.Resources;
+import android.media.AudioManager;
+import android.media.PlaybackParams;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -18,6 +23,9 @@ import com.nightonke.wowoviewpager.WoWoPathView;
 import com.nightonke.wowoviewpager.WoWoViewPager;
 import com.nightonke.wowoviewpager.WoWoViewPagerAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
+
+import static android.view.View.GONE;
+import static stop.one.soundhearingaid.MainActivity.audioPlayer;
 
 public class BasicsFragment2 extends Fragment {
     WoWoPathView pathView;
@@ -41,6 +49,7 @@ public class BasicsFragment2 extends Fragment {
         };
     }
 
+    public static boolean yes2 = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -54,6 +63,34 @@ public class BasicsFragment2 extends Fragment {
         int position = FragmentPagerItem.getPosition(getArguments());
         pathView = view.findViewById(R.id.path_view);
         wowo = view.findViewById(R.id.wowo_viewpager);
+        final ImageView bird = view.findViewById(R.id.bird);
+        final ImageView tryme = view.findViewById(R.id.tryme);
+        final ImageView arrow = view.findViewById(R.id.arrow);
+        bird.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tryme.setVisibility(GONE);
+                arrow.setVisibility(GONE);
+                Animation animationi = AnimationUtils.loadAnimation(getContext(),
+                        R.anim.slideoutleft);
+                bird.setAnimation(animationi);
+                bird.setVisibility(GONE);
+
+
+                audioPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                PlaybackParams params = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    yes2 = true;
+                    params = new PlaybackParams();
+                    params.setPitch(0.75f);
+                    audioPlayer.setPlaybackParams(params);
+                    audioPlayer.start();
+                    audioPlayer.setLooping(true);
+                }
+
+
+            }
+        });
         wowo.setAdapter(WoWoViewPagerAdapter.builder()
                 .fragmentManager(getFragmentManager())
                 .count(fragmentNumber())                       // Fragment Count
@@ -111,4 +148,5 @@ public class BasicsFragment2 extends Fragment {
 
             }
         });
-    }}
+    }
+}

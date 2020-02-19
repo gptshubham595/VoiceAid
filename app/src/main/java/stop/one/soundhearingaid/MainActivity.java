@@ -14,17 +14,19 @@ import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
 import static stop.one.soundhearingaid.BasicsFragment3.yes;
+import static stop.one.soundhearingaid.BasicsFragment2.yes2;
 
 public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     FragmentPagerItemAdapter adapter;
-    public static MediaPlayer mediaPlayer;
+    public static MediaPlayer mediaPlayer,audioPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mediaPlayer=MediaPlayer.create(this,R.raw.loudness);
+        audioPlayer = MediaPlayer.create(this, R.raw.loudness);
         adapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
                 .add("        ", BasicsFragment1.class)
@@ -49,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
                 if(position!=2 && yes){
                     if(mediaPlayer.isPlaying() && mediaPlayer!=null)
                     {mediaPlayer.pause();
+                    }
+                }
+                if(position!=1 && yes2){
+                    if(audioPlayer.isPlaying() && audioPlayer!=null)
+                    {audioPlayer.pause();
                     }
                 }
 
