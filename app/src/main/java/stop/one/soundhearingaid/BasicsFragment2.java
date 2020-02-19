@@ -26,6 +26,7 @@ import com.nightonke.wowoviewpager.WoWoViewPagerAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
 
 import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 import static stop.one.soundhearingaid.MainActivity.audioPlayer;
 
 public class BasicsFragment2 extends Fragment {
@@ -76,11 +77,10 @@ public class BasicsFragment2 extends Fragment {
             public void onClick(View v) {
 
                 if(i==0) {
+                    wowo.setVisibility(VISIBLE);
+                    pathView.setVisibility(VISIBLE);
                     tryme.setVisibility(GONE);
                     arrow.setVisibility(GONE);
-                    Animation animationi = AnimationUtils.loadAnimation(getContext(),
-                            R.anim.slideoutleft);
-                    bird.setAnimation(animationi);
                     bird.setVisibility(GONE);
                 }
                 i++;
@@ -159,8 +159,8 @@ public class BasicsFragment2 extends Fragment {
                         screenW * 0.97, screenH * 0.206)
         ;
         wowo.addAnimation(pathView)
-                .add(WoWoPathAnimation.builder().page(0).from(0).to(0.50).path(pathView).build())
-                .add(WoWoPathAnimation.builder().page(1).from(0.50).to(0.75).path(pathView).build())
+                .add(WoWoPathAnimation.builder().page(0).from(0.25).to(0.5).path(pathView).build())
+                .add(WoWoPathAnimation.builder().page(1).from(0.5).to(0.750).path(pathView).build())
                 .add(WoWoPathAnimation.builder().page(2).from(0.75).to(1).path(pathView).build())
                 .add(WoWoPathAnimation.builder().page(3).from(0.75).to(1).path(pathView).build());
     }
