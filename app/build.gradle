@@ -108,4 +108,6 @@ dependencies {
 
     implementation 'dev.dworks.libs:volleyplus:+'
 
+    implementation 'com.nightonke:wowoviewpager:2.0.0'
+
 }

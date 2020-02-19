@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/base"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context=".animation.GuidePageActivity2">
+
+
+    <com.nightonke.wowoviewpager.WoWoViewPager
+        android:id="@+id/wowo_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
+    <com.nightonke.wowoviewpager.WoWoPathView
+        android:id="@+id/path_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:wowo_pathColor="@color/rocket_fire"
+        app:wowo_pathWidth="2dp"
+        app:wowo_dynamicPath="true"
+        app:wowo_headImageSrc="@drawable/bird"
+        app:wowo_headImageWidth="60dp"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="71dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/path" />
+
+</FrameLayout>
