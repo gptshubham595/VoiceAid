@@ -58,6 +58,7 @@ public class BasicsFragment2 extends Fragment {
         return inflater.inflate(R.layout.fragment_basics2, container, false);
     }
 
+    int i=0;
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -70,17 +71,19 @@ public class BasicsFragment2 extends Fragment {
 
         SeekBar seekBar = view.findViewById(R.id.seekbar);
 
-        seekBar.setOnClickListener(new View.OnClickListener() {
+        bird.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tryme.setVisibility(GONE);
-                arrow.setVisibility(GONE);
-                Animation animationi = AnimationUtils.loadAnimation(getContext(),
-                        R.anim.slideoutleft);
-                bird.setAnimation(animationi);
-                bird.setVisibility(GONE);
 
-
+                if(i==0) {
+                    tryme.setVisibility(GONE);
+                    arrow.setVisibility(GONE);
+                    Animation animationi = AnimationUtils.loadAnimation(getContext(),
+                            R.anim.slideoutleft);
+                    bird.setAnimation(animationi);
+                    bird.setVisibility(GONE);
+                }
+                i++;
             }
         });
 

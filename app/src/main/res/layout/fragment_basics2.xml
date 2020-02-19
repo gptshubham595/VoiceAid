@@ -27,10 +27,10 @@
         android:src="@drawable/path" />
     <SeekBar
         android:layout_width="match_parent"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="280dp"
         android:id="@+id/seekbar"
-        android:alpha="0"
-        android:layout_height="100dp"/>
+        android:alpha="1"
+        android:layout_height="70dp"/>
 
     <ImageView
         android:layout_width="match_parent"
