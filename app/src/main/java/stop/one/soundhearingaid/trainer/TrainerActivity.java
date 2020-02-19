@@ -45,7 +45,6 @@ import static android.view.View.VISIBLE;
 
 public class TrainerActivity extends AppCompatActivity {
 
-    private static final String BASE_URL = "http://ec2-13-235-23-241.ap-south-1.compute.amazonaws.com/uploadfile";
 
     private static final int PICK_IMAGE_REQUEST = 100;
     GifImageView gif, gif2, speakergif;
@@ -60,7 +59,7 @@ public class TrainerActivity extends AppCompatActivity {
     String outputFile;
     ImageView again;
     Toolbar toolbar;
-    String respo = "NULL";
+
     SeekBar seekBar;
     boolean wasPlaying = false;
     private ProgressBar progressBar;
@@ -154,38 +153,19 @@ public class TrainerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 output = new File(outputFile);
                 if (output.exists()) {
-                    Toast.makeText(TrainerActivity.this, "YES", Toast.LENGTH_SHORT).show();
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             if (outputFile != null) {
-                                imageUpload();
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        if (respo.equals("NULL")) {
-                                            imageUpload();
-                                        } else {
-                                            Intent i = new Intent(TrainerActivity.this, AnalyzerActivity.class);
-                                            i.putExtra("base64", respo);
-                                            startActivity(i);
-                                        }
 
-                                    }
-                                }, 200);
+                                Intent i = new Intent(TrainerActivity.this, AnalyzerActivity.class);
+                                startActivity(i);
 
                             } else {
                                 Toast.makeText(getApplicationContext(), "Audio not selected!", Toast.LENGTH_LONG).show();
                             }
                         }
                     }, 200);
-
-//                    try {
-//                       // sendaudio();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-
 
                 } else {
                     Toast.makeText(TrainerActivity.this, "Sorry unable to locate", Toast.LENGTH_SHORT).show();
@@ -414,62 +394,7 @@ public class TrainerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(menuItem);
     }
 
-    private void imageUpload() {
-        Response.Listener successListener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(final String response) {
-                Log.d("Response", response);
-//                Toast.makeText(TrainerActivity.this, "" + response, Toast.LENGTH_SHORT).show();
-                String[] arrOfStr = response.split(",", 5);
-                String base64 = arrOfStr[0].substring(11, arrOfStr[0].length()-3);
-                String pitch=arrOfStr[1].substring(9);
-                Log.d("ARR",base64);
-                Log.d("ARR2",pitch);
-//                Log.d("ARR3",arrOfStr[2]);
-//                String firstFourCharsbase64 = arrOfStr[1].substring(0, arrOfStr[1].length() - 9);
-//                Toast.makeText(TrainerActivity.this, ""+arrOfStr[2], Toast.LENGTH_SHORT).show();
 
-                try {
-
-                    Intent i = new Intent(TrainerActivity.this, AnalyzerActivity.class);
-                    i.putExtra("base64", base64);
-                    i.putExtra("pitch", pitch);
-                    startActivity(i);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-
-//                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-
-
-            }
-        };
-
-        Response.ErrorListener errorListener = new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        };
-
-        SimpleMultiPartRequest smr = new SimpleMultiPartRequest(Request.Method.GET, BASE_URL, successListener, errorListener) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "multipart/mixed");
-                Log.i("teste", "HEADER: " + headers);
-
-                return headers;
-            }
-        };
-        smr.setShouldCache(false);
-
-        smr.addFile("file", outputFile);
-        MyApplication.getInstance().addToRequestQueue(smr);
-
-    }
 
 
 }
